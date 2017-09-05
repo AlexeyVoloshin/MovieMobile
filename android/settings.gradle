@@ -1,0 +1,3 @@
+rootProject.name = 'MovieMobile'
+
+include ':app'
