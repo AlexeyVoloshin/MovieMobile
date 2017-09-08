@@ -12,7 +12,7 @@ export default class Main extends Component{
     render(){
         return (
             <Router>
-               <Scene navigationBarStyle={{backgroundColor: '#ef966a' , height: 40, }}
+               <Scene navigationBarStyle={{backgroundColor: 'red' , height: 40, }}
                       key="root"
                       title="Cinema"
                       titleStyle={{color:'#ffffff', fontSize: 25, flex:1, flexDirection:'row', alignItems:'center', alignSelf:'center', }}
@@ -23,12 +23,12 @@ export default class Main extends Component{
                        component={Premieres}
                        title="Premieres"
                        hideNavBar={true}
-                       initial={true}
                />
                    <Scene
                        key="MovieDetails"
                        component={MovieDetails}
-                       title="MovieDetails"
+                       title="зараз у кіно"
+                       initial={true}
 
                />
                </Scene>

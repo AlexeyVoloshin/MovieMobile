@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
 import { Text, View } from 'react-native';
-
+import MovieDetailsView from './view';
 import styled from 'styled-components/native';
 
-const Wrapper = styled.View`
-  background-color: papayawhip;
-`;
-const Row = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 20 ;
-`;
-const StyledText = styled.Text`
-  fontSize: 14;
-  color: #000;
-  text-align: center;
-`;
 
 export default class MovieDetails extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+        this.places = [];
+        this.initialPlaces();
+    }
+    initialPlaces(){
+        for (let i = 0; i< 10; i++){
+            for (let j = 0; j< 14; j++){
+                this.places.push({numberPlace:j+1, numberRow:i+1});
+            }
+        }
+    }
+
     render(){
+        console.log("metka", this.places);
         return(
-            <Wrapper>
-                <Row>
-                    <StyledText>scene2</StyledText>
-                </Row>
-            </Wrapper>
+           <MovieDetailsView places={this.places}/>
 
         )
     }
