@@ -30,6 +30,7 @@ export default class Premieres extends Component {
                 </Text>
             );
         }
+
         return(
 
             <PremieresView

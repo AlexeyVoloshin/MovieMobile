@@ -79,7 +79,10 @@ const imgUri = [
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
-
+const FoodItemImage = styled.Image`
+  width: ${(props) => props.width ? props.width : 100 };
+  height: ${(props) => props.height ? props.height : 100 };
+`;
 const PremieresView = ({ allMovie}):Props =>{
 
         return(
