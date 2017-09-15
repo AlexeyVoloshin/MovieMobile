@@ -5,11 +5,23 @@ import styled from 'styled-components/native';
 
 
 export default class Tickets extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
 
+        }
+        this.places = [];
+        this.initialPlaces();
+    }
+    initialPlaces() {
+        for (let i = 0; i < 10; i++) {
+            this.places.push({Circle:i+1});
+        }
+    }
     render(){
 
         return(
-            <TicketsView/>
+            <TicketsView places={this.places}/>
 
         )
     }

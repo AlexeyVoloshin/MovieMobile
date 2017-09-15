@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
-
+import { Action } from 'react-native-router-flux';
 const Wrapper = styled.View`
     flex: 1;
 `;
@@ -128,9 +128,10 @@ const renderPlaces = (places) => {
     });
     return resultPlaces;
 };
+
 const MovieDetailsView = (places):Props =>{
     const _renderPlaces = renderPlaces(places);
-    console.log('_renderPlaces', _renderPlaces);
+
     return(
         <Wrapper>
             <ImageStyle source={imgUri[0]} resizeMode="cover" />

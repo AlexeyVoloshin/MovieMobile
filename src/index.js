@@ -9,6 +9,9 @@ import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst} fro
 import Premieres from './containers/Premieres';
 import MovieDetails from './containers/MovieDetails';
 import Tickets from "./containers/Tickets/index";
+import Discount from "./containers/tabs/Discount";
+import Soon from "./containers/tabs/Soon";
+import Payment from "./containers/Payment/index";
 const TabIcon = ({ selected, title}) =>{
     return(
         <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
@@ -26,51 +29,39 @@ export default class Main extends Component{
                >
                    <Scene
                        key="tabbar"
-                       tabs
+                       tabs={true}
                        tabBarStyle={{backgroundColor: '#ef966a',  height: 35 }}
-                   >
-                       <Scene
-                           key="Latest"
-                           title="Latest"
-                           icon={TabIcon}
-                       >
-                   <Scene
-                       key="Premieres"
-                       component={Premieres}
-                       title="Premieres"
-                       hideNavBar={true}
-                       initial={true}
-               />
-                       </Scene>
-                   <Scene
-                       key="Details"
-                       title="Details"
-                       icon={TabIcon}
+                       //hideTabBar={true}
+                       showLabel={false}
 
                    >
                        <Scene
-                       key="MovieDetails"
-                       component={MovieDetails}
-                       title="зараз у кіно"
-
-               />
-                   </Scene>
-                       <Scene
-                           key="Ticket"
-                           title="Ticket"
+                           key="premieres"
+                           component={Tickets}
+                           title="Зараз у кіно"
+                           initial={true}
                            icon={TabIcon}
-                       >
-                   <Scene
-                       key="Tickets"
-                       component={Tickets}
-                       title="Хмельницький, Оазис"
-                       initial={true}
+                           hideNavBar={true}
 
-                   />
+
+                       />
+                       <Scene
+                           key="discount"
+                           component={Discount}
+                           title="Акції та скидки"
+                           icon={TabIcon}
+
+                       >
                        </Scene>
+                       <Scene
+                           key="soon"
+                           component={Soon}
+                           icon={TabIcon}
+                           //title="Хмельницький, Оазис"
+
+                       />
+                    </Scene>
                </Scene>
-                   </Scene>
-
             </Router>
         )
     }

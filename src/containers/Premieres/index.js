@@ -3,7 +3,7 @@ import { Text, View, ListView  } from 'react-native';
 import PremieresView from './view';
 import styled from 'styled-components/native';
 import { getAllMovie } from '../../components/api';
-
+import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst} from 'react-native-router-flux';
 
 export default class Premieres extends Component {
     constructor(props) {

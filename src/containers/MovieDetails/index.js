@@ -22,7 +22,7 @@ export default class MovieDetails extends Component {
     }
 
     render(){
-        console.log("metka", this.places);
+
         return(
            <MovieDetailsView places={this.places}/>
 

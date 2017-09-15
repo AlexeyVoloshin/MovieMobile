@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import CalendarTest from '../../components/calendar';
-
+import { Action } from 'react-native-router-flux';
 const Wrapper = styled.ListView`
 
 `;
@@ -61,7 +61,7 @@ const TextStyledTime = styled.Text`
    text-align: center;
    margin-top: 20;
 `;
-const TextStyledTime2 = styled.Text`
+const MovieDate = styled.Text`
    fontSize: 15;
    color: #ffffffff;
    text-align: center;
@@ -79,10 +79,7 @@ const imgUri = [
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
-const FoodItemImage = styled.Image`
-  width: ${(props) => props.width ? props.width : 100 };
-  height: ${(props) => props.height ? props.height : 100 };
-`;
+
 const PremieresView = ({ allMovie}):Props =>{
 
         return(
@@ -102,8 +99,10 @@ const PremieresView = ({ allMovie}):Props =>{
                     </DateStyled>
                         <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
                     {/*<CalendarTest/>*/}
-                        <TextStyledTime2>18:10  19:00  19:50  20:50   21:40  22:30  23:30
-                        </TextStyledTime2>
+                        <MovieDate onPress={()=> Action.Discount()}
+                        >
+                            18:10  19:00  19:50  20:50   21:40  22:30  23:30
+                        </MovieDate>
                 </Row>
 
 
