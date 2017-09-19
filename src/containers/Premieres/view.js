@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import CalendarTest from '../../components/calendar';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 const Wrapper = styled.ListView`
 
 `;
@@ -15,7 +15,7 @@ const MoviePhoto = styled.Image`
    height: 285;
 `;
 const PhotoMoviView = styled.View`
-   margin-top: 50;
+   margin-top: 20;
    flex-direction: row;
    align-items: center;
    justify-content: center;
@@ -45,9 +45,10 @@ const ImageStyleArrow = styled.Image`
 `;
 const StyledText = styled.Text`
    margin-top: 30;
-   fontSize: 20;
+   fontSize: 15;
    color: #ffffffff;
    text-align: center;
+   
 `;
 const TextStyled = styled.Text`
    fontSize: 20;
@@ -60,6 +61,11 @@ const TextStyledTime = styled.Text`
    color: #ffffffff;
    text-align: center;
    margin-top: 20;
+`;
+const MovieDateContain = styled.View`
+   flex-direction: row;
+   justify-content: space-between;
+   height: 100%; 
 `;
 const MovieDate = styled.Text`
    fontSize: 15;
@@ -99,14 +105,37 @@ const PremieresView = ({ allMovie}):Props =>{
                     </DateStyled>
                         <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
                     {/*<CalendarTest/>*/}
-                        <MovieDate onPress={()=> Action.Discount()}
+                    <MovieDateContain>
+                    <MovieDate onPress={ Actions.payment}
                         >
-                            18:10  19:00  19:50  20:50   21:40  22:30  23:30
+                            18:10
                         </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            19:00
+                        </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            19:50
+                        </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            20:50
+                        </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            21:40
+                        </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            22:30
+                        </MovieDate>
+                        <MovieDate onPress={ Actions.payment}
+                        >
+                            23:30
+                        </MovieDate>
+                    </MovieDateContain>
                 </Row>
-
-
-
             </ImageStyle>
         );
 };

@@ -19,12 +19,22 @@ export default class MovieDetails extends Component {
                 this.places.push({numberPlace:j+1, numberRow:i+1});
             }
         }
-    }
 
+        /*this.placesVip = [];
+        this.initialPlacesVip();
+}
+        initialPlacesVip(){
+            for (let v =0; v<13; v++){
+                this.placesVip.push({numberPlace:v+1});
+            }*/
+        }
     render(){
 
         return(
-           <MovieDetailsView places={this.places}/>
+           <MovieDetailsView places={this.places}
+             /* placesVip={this.placesVip}*/
+
+           />
 
         )
     }

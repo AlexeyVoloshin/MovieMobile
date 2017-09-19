@@ -21,27 +21,30 @@ export default class Main extends Component{
     render(){
         return (
             <Router>
-               <Scene navigationBarStyle={{backgroundColor: '#f15459ff' , height: 40, }}
+               <Scene navigationBarStyle={{backgroundColor: '#f15459ff' , height: 36, borderBottomWidth: 0,
+                   elevation: 4 }}
+
                       key="root"
                       title="Cinema"
-                      titleStyle={{color:'#ffffff', fontSize: 25, flex:1, flexDirection:'row', alignItems:'center', alignSelf:'center', }}
-
+                      titleStyle={{color:'#ffffff', fontSize: 25, flex:1, flexDirection:'row',  alignSelf:'center' }}
                >
                    <Scene
                        key="tabbar"
                        tabs={true}
                        tabBarStyle={{backgroundColor: '#ef966a',  height: 35 }}
-                       //hideTabBar={true}
+
                        showLabel={false}
+
 
                    >
                        <Scene
                            key="premieres"
-                           component={Tickets}
+                           component={Premieres}
                            title="Зараз у кіно"
                            initial={true}
                            icon={TabIcon}
-                           hideNavBar={true}
+                           hideNavBar={false}
+                           hideTabBar={false}
 
 
                        />
@@ -60,6 +63,13 @@ export default class Main extends Component{
                            //title="Хмельницький, Оазис"
 
                        />
+                       <Scene
+                           key="payment"
+                           component={Payment}
+                           icon={TabIcon}
+                           wrap={false}
+                       />
+
                     </Scene>
                </Scene>
             </Router>

@@ -81,22 +81,17 @@ const CircleView = styled.View`
     margin-horizontal: 80;
     background-color: #ffffffff;
     justifyContent: space-between;
-    
 `;
 const LargeCircleLeft = styled.View`
     width: 10px;
     height: 20px;
-    
-     
     background-color: #0d1927ff;
-   
 `;
 const LargeCircleRight = styled.View`
     width: 10px;
     height: 20px;
     border-radius: 3;
     background-color: #0d1927ff;
-    
 `;
 const SmallCircle = styled.View`
     margin-top: 7;
@@ -118,7 +113,6 @@ const ContainerTicket = styled.View`
    margin-top: 30;
    background-color: #ffffffff;
    margin-horizontal: 80; 
-     
 `;
 const TextOrder = styled.Text`
    margin-top: 30;
