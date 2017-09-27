@@ -1,42 +1,29 @@
 import React, { Component } from "react";
-import Calendar   from "react-native-calendar-component";
+import CalendarView from './view';
+import { Text, View, Modal } from 'react-native';
 
 export default class CalendarTest extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            date: new Date()
-        };
+        this.state = {isShowCalendar: false, dateString: null};
     }
-
-    handleNextButtonPress() {
-        const date = new Date(this.state.date);
-        date.setMonth(date.getMonth() + 1);
-        this.setState({
-            date
-        });
-    }
-
-    handlePrevButtonPress() {
-        const date = new Date(this.state.date);
-        date.setMonth(date.getMonth() - 1);
-        this.setState({
-            date
-        });
-    }
-
-    handleDateSelect(date) {
-        alert(`clicked: ${this.state.date.toString()}`);
-    }
-
-    render() {
-        return (
-            <Calendar
-                date={this.state.date}
-                onPrevButtonPress={() => this.handlePrevButtonPress()}
-                onNextButtonPress={() => this.handleNextButtonPress()}
-                onDateSelect={(date) => this.handleDateSelect(date)} />
+    handleShowCalendar = () => {
+        this.setState(
+            {isShowCalendar: !this.state.isShowCalendar }
         );
+    };
+    handleShowOnDay= (dateString) => {
+        this.setState({dateString, isShowCalendar: false});
+    };
+
+    render(){
+       return (
+          <CalendarView
+              onShowCalendar={this.handleShowCalendar}
+              isShow={this.state.isShowCalendar}
+              onShowOnDay={this.handleShowOnDay}
+              selectedDate={this.state.dateString}
+          />
+       );
     }
 }

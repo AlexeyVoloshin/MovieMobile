@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import { Action } from 'react-native-router-flux';
+
+
 const Wrapper = styled.View`
     flex: 1;
     background-color: #0d1a27ff;

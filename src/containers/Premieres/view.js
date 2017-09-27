@@ -3,16 +3,15 @@ import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import CalendarTest from '../../components/calendar';
 import { Actions } from 'react-native-router-flux';
-const Wrapper = styled.ListView`
-
-`;
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 const Row = styled.View`
-  
 `;
-
 const MoviePhoto = styled.Image`   
-   width: 250;
-   height: 285;
+   width: 240;
+   height: 265;
+   justify-content: center;
+   align-items: center;
+   flex-direction: row;
 `;
 const PhotoMoviView = styled.View`
    margin-top: 20;
@@ -21,27 +20,21 @@ const PhotoMoviView = styled.View`
    justify-content: center;
 `;
 const DateStyled = styled.View`
-   background-color: #fd5555ff;
-   margin-horizontal: 80;
-   border-radius:30;
-   padding-vertical: 10;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-between;
+ 
 `;
 const ImageStyle = styled.Image`
-   width: 440;
-   height: 660;
+   width: 100%;
+   height: 100%;
 `;
 const ImageStyleCalendar = styled.Image`    
    width: 25;
    height: 25;
-   margin-left: 20;
+   margin-left: 10%;
 `;
 const ImageStyleArrow = styled.Image`    
-   width: 22;
-   height: 13;
-   margin-right: 20;
+   width: 44;
+   height: 23;
+   
 `;
 const StyledText = styled.Text`
    margin-top: 30;
@@ -79,6 +72,11 @@ const TextStyledDate = styled.Text`
    color: #ffffffff;
    text-align: center;
 `;
+
+const CalendarDate = styled.Text`
+   margin-right: 30;
+   
+`;
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
@@ -86,25 +84,23 @@ const imgUri = [
     require('../../img/arrow-down.png'),
 ];
 
-const PremieresView = ({ allMovie}):Props =>{
+const PremieresView = ({ allMovie}):Props => {
+
 
         return(
             <ImageStyle source={imgUri[0]}>
                 <StyledText>ФОРСАЖ 8</StyledText>
                 <Row>
-                    {/*<myIcon/>*/}
+
                     <PhotoMoviView>
                     <MoviePhoto source={imgUri[1]}/>
                     </PhotoMoviView>
                         <TextStyled>Розклад сеансів</TextStyled>
-
-                    <DateStyled >
-                        <ImageStyleCalendar source={imgUri[2]}/>
-                    <TextStyledDate>Чт, 20 квітня</TextStyledDate>
-                        <ImageStyleArrow source={imgUri[3]}/>
-                    </DateStyled>
+                         <DateStyled>
+                          <CalendarTest/>
+                         </DateStyled>
                         <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
-                    {/*<CalendarTest/>*/}
+
                     <MovieDateContain>
                     <MovieDate onPress={ Actions.payment}
                         >
@@ -135,6 +131,7 @@ const PremieresView = ({ allMovie}):Props =>{
                             23:30
                         </MovieDate>
                     </MovieDateContain>
+
                 </Row>
             </ImageStyle>
         );

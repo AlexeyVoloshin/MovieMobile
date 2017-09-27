@@ -130,7 +130,7 @@ const CVV = styled.Text`
       padding-horizontal: 10;
 `;
 const HeadLineView = styled.View`
-     margin-top: 50;
+     margin-top: 30;
      margin-left: 30;
      flex-direction: column;
 `;

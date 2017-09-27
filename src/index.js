@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
-    Text
+    Text,
+    View
 } from 'react-native';
 import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst} from 'react-native-router-flux';
 
@@ -21,17 +22,17 @@ export default class Main extends Component{
     render(){
         return (
             <Router>
-               <Scene navigationBarStyle={{backgroundColor: '#f15459ff' , height: 36, borderBottomWidth: 0,
+               <Scene navigationBarStyle={{backgroundColor: '#f15459ff' , height: 30, borderBottomWidth: 0,
                    elevation: 4 }}
 
                       key="root"
                       title="Cinema"
-                      titleStyle={{color:'#ffffff', fontSize: 25, flex:1, flexDirection:'row',  alignSelf:'center' }}
+                      titleStyle={{color:'#ffffff', fontSize: 15, flex:1, flexDirection:'row',  alignSelf:'center' }}
                >
                    <Scene
                        key="tabbar"
                        tabs={true}
-                       tabBarStyle={{backgroundColor: '#ef966a',  height: 35 }}
+                       tabBarStyle={{backgroundColor: '#ef966a',  height: 20 }}
 
                        showLabel={false}
 
@@ -63,12 +64,7 @@ export default class Main extends Component{
                            //title="Хмельницький, Оазис"
 
                        />
-                       <Scene
-                           key="payment"
-                           component={Payment}
-                           icon={TabIcon}
-                           wrap={false}
-                       />
+
 
                     </Scene>
                </Scene>
