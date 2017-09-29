@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+import Tickets from "../Tickets/index";
 
 
 const Wrapper = styled.View`
@@ -126,6 +127,9 @@ const NumberRow = styled.Text`
     background-color: blue;
     flex: 1;
 `;
+const OnPressView = styled.TouchableOpacity`
+   height: 60px;
+`;
 const number = ["1\n2\n3\n4\n5\n6\n7\n8\n9"];
 const imgUri = [
     require('../../img/layer_5.png'),
@@ -159,19 +163,11 @@ const renderPlaces = (places) => {
     });
     return resultPlaces;
 };
-/*const renderRowVip = (placesVip) =>{
-    const resultRowVip = [];
-    placesVip.forEach((item, i, arr) => {
-        resultRowVip.push(<SquaresView key={v} color="steelblue" />);
-    });
-    console.log(<PlacesRowVip>{resultRowVip}</PlacesRowVip>);
-    return <PlacesRowVip>{resultRowVip}</PlacesRowVip>;
-};
-*/
 
-const MovieDetailsView = (places, placesVip):Props =>{
+
+const MovieDetailsView = (places, selectedDate):Props =>{
     const _renderPlaces = renderPlaces(places);
-    /*const _renderPlacesVip = renderRowVip(placesVip);*/
+    console.log('MovieDetailsView selectedDate', selectedDate);
     return(
         <Wrapper>
             <ImageStyle source1={imgUri[0]} resizeMode="cover" />
@@ -290,9 +286,16 @@ const MovieDetailsView = (places, placesVip):Props =>{
                     {_renderPlaces}
                 </Places>
               </PlacesEndRow>
+            <OnPressView
+                onPress={
+                    () => {Actions.tickets({date: selectedDate,})}
+                }
+            >
             <NextView>
-            <Next>Далі</Next>
+            <Next
+            >Далі</Next>
             </NextView>
+            </OnPressView>
         </Wrapper>
     )
 };

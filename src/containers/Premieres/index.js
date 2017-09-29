@@ -3,7 +3,7 @@ import { Text, View, ListView  } from 'react-native';
 import PremieresView from './view';
 import styled from 'styled-components/native';
 import { getAllMovie } from '../../components/api';
-import {Scene, Router, TabBar, Modal, Schema, Actions, Reducer, ActionConst} from 'react-native-router-flux';
+import {TabBar, Schema} from 'react-native-router-flux';
 
 export default class Premieres extends Component {
     constructor(props) {
@@ -11,7 +11,11 @@ export default class Premieres extends Component {
         this.state={
             isLoading: false,
             movie: null,
+            selectedDate: null,
         }
+    }
+    handleSetSelectedDate = (selectedDate) => {
+        this.setState( { selectedDate } );
     }
     componentDidMount() {
         /*const self = this;
@@ -36,7 +40,9 @@ export default class Premieres extends Component {
 
             <PremieresView
                 allMovie = {this.state.movie}
-                />
+                selectedDate={this.state.selectedDate}
+                onSetSelectedDate={this.handleSetSelectedDate}
+            />
 
         )
     }

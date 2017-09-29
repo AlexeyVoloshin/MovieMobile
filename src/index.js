@@ -67,6 +67,28 @@ export default class Main extends Component{
 
 
                     </Scene>
+                   <Scene
+                       key="movieDetails"
+                       component={MovieDetails}
+                       icon={TabIcon}
+
+
+                   />
+                   <Scene
+                       key="tickets"
+                       component={Tickets}
+                       icon={TabIcon}
+
+
+                   />
+                   <Scene
+                       key="payment"
+                       component={Payment}
+                       icon={TabIcon}
+
+
+                   />
+
                </Scene>
             </Router>
         )

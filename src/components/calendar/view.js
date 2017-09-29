@@ -49,7 +49,7 @@ const arrowCalendar = {
 
 class CalendarView extends Component {
     renderCalendar(){
-        const { isShow, onShowOnDay } = this.props;
+        const { isShow, onSetSelectedDate } = this.props;
         return(
             <Modal
                 visible={isShow}
@@ -76,7 +76,7 @@ class CalendarView extends Component {
                         textMonthFontSize: 16,
                         textDayHeaderFontSize: 16
                     }}
-                    onDayPress={(dateString) => onShowOnDay(dateString)}
+                    onDayPress={(dateString) => onSetSelectedDate(dateString)}
                 />
 
             </Modal>
@@ -85,6 +85,7 @@ class CalendarView extends Component {
 
     renderButton(){
         const { isShow, onShowCalendar, selectedDate } = this.props;
+        console.log('calendar view selectedDate', selectedDate);
         let icon = null;
         if(isShow)
             icon = arrowCalendar.active;

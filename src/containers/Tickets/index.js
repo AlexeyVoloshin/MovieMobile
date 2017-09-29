@@ -19,9 +19,11 @@ export default class Tickets extends Component {
         }
     }
     render(){
-
+        console.log('tickets  selectedDate', this.props.date);
         return(
-            <TicketsView places={this.places}/>
+            <TicketsView places={this.places}
+                         selectedDate={this.props.date}
+            />
 
         )
     }

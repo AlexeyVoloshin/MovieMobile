@@ -1,28 +1,31 @@
 import React, { Component } from "react";
 import CalendarView from './view';
-import { Text, View, Modal } from 'react-native';
 
 export default class CalendarTest extends Component {
     constructor(props) {
         super(props);
-        this.state = {isShowCalendar: false, dateString: null};
+        this.state = {isShowCalendar: false};
     }
     handleShowCalendar = () => {
         this.setState(
             {isShowCalendar: !this.state.isShowCalendar }
         );
     };
-    handleShowOnDay= (dateString) => {
-        this.setState({dateString, isShowCalendar: false});
+    handleSelectDate = (dateString) =>{
+        this.props.onSetSelectedDate(dateString);
+        this.setState(
+            {isShowCalendar: false }
+        );
     };
-
     render(){
-       return (
+        console.log('calendar index selectedDate', this.props.selectedDate);
+
+        return (
           <CalendarView
               onShowCalendar={this.handleShowCalendar}
               isShow={this.state.isShowCalendar}
-              onShowOnDay={this.handleShowOnDay}
-              selectedDate={this.state.dateString}
+              selectedDate={this.props.selectedDate}
+              onSetSelectedDate={this.handleSelectDate}
           />
        );
     }

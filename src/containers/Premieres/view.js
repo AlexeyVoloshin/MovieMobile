@@ -3,7 +3,8 @@ import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import CalendarTest from '../../components/calendar';
 import { Actions } from 'react-native-router-flux';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import calendar from '../../components/calendar';
+
 const Row = styled.View`
 `;
 const MoviePhoto = styled.Image`   
@@ -84,8 +85,8 @@ const imgUri = [
     require('../../img/arrow-down.png'),
 ];
 
-const PremieresView = ({ allMovie}):Props => {
-
+const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
+    console.log('PremieresView selectedDate', selectedDate);
 
         return(
             <ImageStyle source={imgUri[0]}>
@@ -97,16 +98,24 @@ const PremieresView = ({ allMovie}):Props => {
                     </PhotoMoviView>
                         <TextStyled>Розклад сеансів</TextStyled>
                          <DateStyled>
-                          <CalendarTest/>
+                          <CalendarTest
+                              onSetSelectedDate={onSetSelectedDate}
+                              selectedDate={selectedDate}
+                          />
                          </DateStyled>
                         <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
 
                     <MovieDateContain>
-                    <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                                date: selectedDate,
+                            })
+                        }}
+
                         >
                             18:10
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate
                         >
                             19:00
                         </MovieDate>

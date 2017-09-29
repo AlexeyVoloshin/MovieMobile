@@ -134,8 +134,8 @@ const imgUri = [
 ];
 const leftText = ("Фильм, Кінотеатр, Сеансы");
 
-const TicketsView = ():Props => {
-
+const TicketsView = (selectedDate):Props => {
+    console.log('TicketsView selectedDate', selectedDate);
     return (
 
             <ImageStyle source={imgUri[0]} resizeMode="cover" >
@@ -151,7 +151,7 @@ const TicketsView = ():Props => {
                        <InfoFilmsColumnRight>
                            <TextTicket>Форсаж 8</TextTicket>
                            <TextTicket>Хмельницький Oasis</TextTicket>
-                           <TextTicket>2D,20.04.2017 23:30</TextTicket>
+                           <TextTicket>2D,{selectedDate.dateString} </TextTicket>
                        </InfoFilmsColumnRight>
                      </InfoStringTop>
                        <InfoStringBottom>
