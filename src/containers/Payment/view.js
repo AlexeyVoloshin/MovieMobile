@@ -90,8 +90,8 @@ const CvvView = styled.View`
       
 `;
 const PeriodView = styled.View`
-        margin-right: 20;
-        margin-left: 20;
+       margin-right: 20;
+       margin-left: 20;
 `;
 const Period = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
@@ -130,9 +130,9 @@ const CVV = styled.Text`
       padding-horizontal: 10;
 `;
 const HeadLineView = styled.View`
-     margin-top: 30;
-     margin-left: 30;
-     flex-direction: column;
+      margin-top: 30;
+      margin-left: 30;
+      flex-direction: column;
 `;
 const CardLineView = styled.View`
      margin-horizontal: 15;
@@ -148,7 +148,7 @@ const imgUri = [
 ];
 const Space = ("       ");
 
-const PaymentView = ():Props =>{
+const PaymentView = ({selectedDate,selectedTime}):Props =>{
 
     return(
         <ImageStyle source={imgUri[0]}>

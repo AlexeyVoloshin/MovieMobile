@@ -21,28 +21,16 @@ const PhotoMoviView = styled.View`
    justify-content: center;
 `;
 const DateStyled = styled.View`
- 
 `;
 const ImageStyle = styled.Image`
    width: 100%;
    height: 100%;
-`;
-const ImageStyleCalendar = styled.Image`    
-   width: 25;
-   height: 25;
-   margin-left: 10%;
-`;
-const ImageStyleArrow = styled.Image`    
-   width: 44;
-   height: 23;
-   
 `;
 const StyledText = styled.Text`
    margin-top: 30;
    fontSize: 15;
    color: #ffffffff;
    text-align: center;
-   
 `;
 const TextStyled = styled.Text`
    fontSize: 20;
@@ -67,16 +55,6 @@ const MovieDate = styled.Text`
    text-align: center;
    margin-top: 20;
    color: red;
-`;
-const TextStyledDate = styled.Text`
-   fontSize: 20;
-   color: #ffffffff;
-   text-align: center;
-`;
-
-const CalendarDate = styled.Text`
-   margin-right: 30;
-   
 `;
 const imgUri = [
     require('../../img/layer_5.png'),
@@ -108,34 +86,64 @@ const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
                     <MovieDateContain>
                         <MovieDate onPress={ () => {Actions.movieDetails({
 
-                                date: selectedDate,
+                            date: selectedDate,
+                            time: "18:10",
                             })
                         }}
-
                         >
                             18:10
                         </MovieDate>
-                        <MovieDate
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "19:00",
+                            })
+                        }}
                         >
                             19:00
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "19:50",
+                            })
+                        }}
                         >
                             19:50
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "20:50",
+                            })
+                        }}
                         >
                             20:50
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "21:40",
+                            })
+                        }}
                         >
                             21:40
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "22:30",
+                            })
+                        }}
                         >
                             22:30
                         </MovieDate>
-                        <MovieDate onPress={ Actions.payment}
+                        <MovieDate onPress={ () => {Actions.movieDetails({
+
+                            date: selectedDate,
+                            time: "23:30",
+                            })
+                        }}
                         >
                             23:30
                         </MovieDate>

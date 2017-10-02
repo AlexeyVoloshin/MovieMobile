@@ -24,7 +24,6 @@ export default class Main extends Component{
             <Router>
                <Scene navigationBarStyle={{backgroundColor: '#f15459ff' , height: 30, borderBottomWidth: 0,
                    elevation: 4 }}
-
                       key="root"
                       title="Cinema"
                       titleStyle={{color:'#ffffff', fontSize: 15, flex:1, flexDirection:'row',  alignSelf:'center' }}
@@ -33,10 +32,7 @@ export default class Main extends Component{
                        key="tabbar"
                        tabs={true}
                        tabBarStyle={{backgroundColor: '#ef966a',  height: 20 }}
-
                        showLabel={false}
-
-
                    >
                        <Scene
                            key="premieres"
@@ -46,49 +42,36 @@ export default class Main extends Component{
                            icon={TabIcon}
                            hideNavBar={false}
                            hideTabBar={false}
-
-
                        />
                        <Scene
                            key="discount"
                            component={Discount}
                            title="Акції та скидки"
                            icon={TabIcon}
-
                        >
                        </Scene>
                        <Scene
                            key="soon"
                            component={Soon}
                            icon={TabIcon}
-                           //title="Хмельницький, Оазис"
-
+                          //title="Хмельницький, Оазис"
                        />
-
-
                     </Scene>
                    <Scene
                        key="movieDetails"
                        component={MovieDetails}
                        icon={TabIcon}
-
-
                    />
                    <Scene
                        key="tickets"
                        component={Tickets}
                        icon={TabIcon}
-
-
                    />
                    <Scene
                        key="payment"
                        component={Payment}
                        icon={TabIcon}
-
-
                    />
-
                </Scene>
             </Router>
         )

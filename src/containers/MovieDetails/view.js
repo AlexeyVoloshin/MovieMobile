@@ -2,14 +2,11 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import Tickets from "../Tickets/index";
-
 
 const Wrapper = styled.View`
     flex: 1;
     background-color: #0d1a27ff;
 `;
-
 const FilmTitle = styled.Text`
    fontFamily: SFUIDisplay-Bold;
    margin-top: 20;
@@ -19,11 +16,6 @@ const FilmTitle = styled.Text`
 `;
 const MovieInfo = styled.View`
    flex-direction: row;
-`;
-const TextTitle = styled.Text`
-   fontSize: 15;
-   color: #ffffffff;
-   margin-left: 5;
 `;
 const ImageStyle = styled.Image`
    width: 100%;
@@ -113,11 +105,6 @@ const PlacesRow = styled.View`
     margin-top: 5;
     flex-direction: row;
 `;
-const PlacesRowVip = styled.View`
-    margin-top: 5;
-    margin-horizontal: 60;
-    flex-direction: row;
-`;
 const NumberRowView = styled.View`
     background-color: green;
     flex-direction: column;
@@ -141,11 +128,11 @@ const imgUri = [
 const renderRow = (places) =>{
     const resultRow = [];
     places.forEach((item, i, arr) => {
-        resultRow.push(<SquaresView key={i} color="steelblue" />);
+        resultRow.push(
+            <SquaresView key={i} color="steelblue" />);
     });
     console.log(<PlacesRow>{resultRow}</PlacesRow>);
-    return <PlacesRow onPress={()=> Action.Payment()}
-
+    return <PlacesRow onPress={()=> ({resultRow})}
     >{resultRow}</PlacesRow>;
 };
 
@@ -153,7 +140,7 @@ const renderPlaces = (places) => {
     console.log('renderPlaces', places.places);
     let tempArray = [];
     let resultPlaces = [];
-    places.places.forEach((item, i, arr) => {
+    places.forEach((item, i, arr) => {
         if(i%14 === 0){
             console.log('renderPlaces renderRow');
             resultPlaces.push(renderRow(tempArray));
@@ -165,7 +152,7 @@ const renderPlaces = (places) => {
 };
 
 
-const MovieDetailsView = (places, selectedDate):Props =>{
+const MovieDetailsView = ({places, selectedDate,selectedTime}):Props =>{
     const _renderPlaces = renderPlaces(places);
     console.log('MovieDetailsView selectedDate', selectedDate);
     return(
@@ -256,9 +243,7 @@ const MovieDetailsView = (places, selectedDate):Props =>{
                             Лукас Блэк, Хелен Миррен
                             </TextInfo>
                         </InfoLeftBottom>
-
                     </InfoRow>
-
                 </MovieInfoTextContainer>
 
             </MovieInfo>
@@ -279,21 +264,24 @@ const MovieDetailsView = (places, selectedDate):Props =>{
               <PlacesEndRow>
                   <NumberRowView>
                     <NumberRow>
-                    {number}
+                        {number}
                     </NumberRow>
                   </NumberRowView>
+
                 <Places>
                     {_renderPlaces}
                 </Places>
               </PlacesEndRow>
             <OnPressView
                 onPress={
-                    () => {Actions.tickets({date: selectedDate,})}
-                }
+                    () => {Actions.tickets({
+                        date: selectedDate,
+                        time: selectedTime,
+                    })
+                 }}
             >
             <NextView>
-            <Next
-            >Далі</Next>
+            <Next>Далі</Next>
             </NextView>
             </OnPressView>
         </Wrapper>

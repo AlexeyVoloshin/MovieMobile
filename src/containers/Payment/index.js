@@ -9,7 +9,11 @@ export default class Payment extends Component {
     render(){
 
         return(
-            <PaymentView/>
+            <PaymentView
+                places={this.places}
+                selectedDate={this.props.date}
+                selectedTime={this.props.time}
+            />
 
         )
     }

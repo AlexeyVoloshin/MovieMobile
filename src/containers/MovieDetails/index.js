@@ -21,13 +21,14 @@ export default class MovieDetails extends Component {
         }
     }
 
+
     render(){
         console.log('movie details selectedDate', this.props.date);
 
         return(
            <MovieDetailsView places={this.places}
                              selectedDate={this.props.date}
-
+                             selectedTime={this.props.time}
            />
 
         )

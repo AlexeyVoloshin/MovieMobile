@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView  } from 'react-native';
+import { View, Text, TextInput, AppRegistry, TouchableOpacity, StyleSheet, KeyboardAvoidingView   } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
-const Wrapper = styled.View`
-    
+const Wrapper = styled.View`    
 `;
 const Buy = styled.Text`
    fontSize: 20;
@@ -16,12 +16,6 @@ const BuyView = styled.View`
     background-color: #f15459ff;
     margin-horizontal: 60;
     padding-vertical: 10;
-`;
-const InputLine = styled.Text`
-   fontSize: 12;
-   color: #000;
-   margin-vertical: 10;
-   margin-left: 20;
 `;
 const MailView = styled.View`
     margin-top: 10;
@@ -105,17 +99,13 @@ const ImageStyle = styled.Image`
    height: 100%;
    position: absolute;
 `;
-const ImageTicket = styled.Image`
-   width:  200;
-   height: 400;  
-`;
 const ContainerTicket = styled.View`  
    margin-top: 30;
    background-color: #ffffffff;
    margin-horizontal: 80; 
 `;
 const TextOrder = styled.Text`
-   margin-top: 30;
+   margin-top: 20;
    fontSize: 15;
    color: #ffffffff;
    text-align: center;
@@ -124,7 +114,30 @@ const TextTicket = styled.Text`
    fontSize: 12;
    color: #000;
 `;
-
+const OnPressView = styled.TouchableOpacity`
+   height: 80px;
+`;
+const styles= StyleSheet.create({
+    container: {
+        paddingTop: 23
+    },
+    input: {
+        height: 30,
+        borderColor: 'rgba(255, 255, 255, 0.2)',
+        marginHorizontal: 30,
+        borderWidth: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        margin: 5,
+        padding: 5,
+        fontSize: 14,
+        fontFamily: 'lightItalic',
+    },
+    twit: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        marginTop: 10,
+    }
+})
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
@@ -132,9 +145,9 @@ const imgUri = [
     require('../../img/arrow-down.png'),
     require('../../img/layer_ticket.png'),
 ];
-const leftText = ("Фильм, Кінотеатр, Сеансы");
 
-const TicketsView = (selectedDate):Props => {
+const TicketsView = ({selectedDate, selectedTime, checkInputUserData}):Props => {
+
     console.log('TicketsView selectedDate', selectedDate);
     return (
 
@@ -151,7 +164,7 @@ const TicketsView = (selectedDate):Props => {
                        <InfoFilmsColumnRight>
                            <TextTicket>Форсаж 8</TextTicket>
                            <TextTicket>Хмельницький Oasis</TextTicket>
-                           <TextTicket>2D,{selectedDate.dateString} </TextTicket>
+                           <TextTicket>2D, {selectedDate.dateString} {selectedTime} </TextTicket>
                        </InfoFilmsColumnRight>
                      </InfoStringTop>
                        <InfoStringBottom>
@@ -201,19 +214,38 @@ const TicketsView = (selectedDate):Props => {
                             </InAllView>
                          <InputLineSet>
                             <InputLineView>
-                                <InputLine>
-                                    Ваше ім'я
-                                </InputLine>
+                                <TextInput
+                                    style={styles.input}
+                                    editable={true}
+                                    onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                    placeholder='Ваше імʼя'
+                                    //ref='username'
+                                    returnKeyType='next'
+                                    value={checkInputUserData}
+                                    underlineColorAndroid={"transparent"}
+                                />
                              </InputLineView>
                                 <InputLineView>
-                                 <InputLine>
-                                     Ваш номер телефону
-                                 </InputLine>
+                                <TextInput
+                                    style={styles.input}
+                                    editable={true}
+                                    onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                    placeholder='Ваш номер телефону'
+                                    returnKeyType='next'
+                                    value={checkInputUserData}
+                                    underlineColorAndroid={"transparent"}
+                                />
                                 </InputLineView>
                              <InputLineView>
-                               <InputLine>
-                                    Email для отримання коду замовлення
-                               </InputLine>
+                                 <TextInput
+                                     style={styles.input}
+                                     editable={true}
+                                     onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                     placeholder='Email для отримання коду замовлення'
+                                     returnKeyType='next'
+                                     value={checkInputUserData}
+                                     underlineColorAndroid={"transparent"}
+                                 />
                              </InputLineView>
                             </InputLineSet>
                         <MailView>
@@ -222,9 +254,17 @@ const TicketsView = (selectedDate):Props => {
                             кодом бронювання та квитками.
                         </TextMail>
                         </MailView>
+                        <OnPressView onPress={
+                            () => {Actions.payment({
+                                date: selectedDate,
+                                time: selectedTime,
+                              })
+                            }}
+                        >
                     <BuyView>
                         <Buy>Купити</Buy>
                     </BuyView>
+                        </OnPressView>
                 </Wrapper>
             </ImageStyle>
     )
