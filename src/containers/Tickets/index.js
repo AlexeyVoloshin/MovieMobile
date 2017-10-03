@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import TicketsView from './view';
 import styled from 'styled-components/native';
-
+import { Actions } from 'react-native-router-flux';
 
 export default class Tickets extends Component {
              constructor(props) {
@@ -19,9 +19,10 @@ export default class Tickets extends Component {
                  if (name.length <=0 && tel.length <=0 && mail.length <=0 ) return false;
              }
 
-    handleCheckInputUserData = (username) => {
-        this.setState( { username } );
-    }
+
+    handleCheckInputUserData = (checkInput) => {
+        this.setState( { checkInput } );
+    };
     render(){
         console.log('tickets  selectedDate', this.props.date);
         return(

@@ -41,13 +41,14 @@ const MovieSquare = styled.View`
     margin-top: 10;
     margin-left: 10;
 `;
-const SquaresView = styled.View`
+const SquaresView = styled.TouchableOpacity`
     width: 16;
     height: 16;
     background-color: ${props => props.color ? props.color : '#000'};
     border-radius: 2;
     margin: 0 5px 5px 0;
 `;
+
 const SquaresViewVip = styled.View`
     width: 12;
     height: 12;
@@ -96,14 +97,17 @@ const NextView = styled.View`
 `;
 const Places = styled.View`
     background-color: gray;
+    
 `;
 const PlacesEndRow = styled.View`
-    margin-horizontal: 50;
+    margin-horizontal: 60;
     flex-direction: row;
 `;
 const PlacesRow = styled.View`
-    margin-top: 5;
+    margin-top: 1;
     flex-direction: row;
+    justifyContent: space-between;
+    
 `;
 const NumberRowView = styled.View`
     background-color: green;
@@ -117,7 +121,6 @@ const NumberRow = styled.Text`
 const OnPressView = styled.TouchableOpacity`
    height: 60px;
 `;
-const number = ["1\n2\n3\n4\n5\n6\n7\n8\n9"];
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
@@ -125,25 +128,36 @@ const imgUri = [
     require('../../img/arrow-down.png'),
 ];
 
-const renderRow = (places) =>{
+const isActivePlace = (selectedPlaces, numberRow, numberPlace) =>{
+    const placeElement = selectedPlaces.find((item)=>{
+        return item.numberPlace === numberPlace && item.numberRow === numberRow;
+    });
+    return !!placeElement;
+};
+const renderRow = (places, onSelectPlace, selectedPlaces) =>{
     const resultRow = [];
     places.forEach((item, i, arr) => {
+        const iasActive = isActivePlace(selectedPlaces, item.numberRow, item.numberPlace);
         resultRow.push(
-            <SquaresView key={i} color="steelblue" />);
+            <SquaresView
+                key={i}
+                onPress={() => onSelectPlace(item.numberRow, item.numberPlace)}
+                color={iasActive ? 'red' : 'steelblue'}
+            />
+        );
     });
     console.log(<PlacesRow>{resultRow}</PlacesRow>);
-    return <PlacesRow onPress={()=> ({resultRow})}
-    >{resultRow}</PlacesRow>;
+    return <PlacesRow>{resultRow}</PlacesRow>;
 };
 
-const renderPlaces = (places) => {
+const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
     console.log('renderPlaces', places.places);
     let tempArray = [];
     let resultPlaces = [];
     places.forEach((item, i, arr) => {
         if(i%14 === 0){
             console.log('renderPlaces renderRow');
-            resultPlaces.push(renderRow(tempArray));
+            resultPlaces.push(renderRow(tempArray, onSelectPlace, selectedPlaces));
             tempArray=[];
         }
         tempArray.push(item);
@@ -152,8 +166,8 @@ const renderPlaces = (places) => {
 };
 
 
-const MovieDetailsView = ({places, selectedDate,selectedTime}):Props =>{
-    const _renderPlaces = renderPlaces(places);
+const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, selectedPlaces }):Props =>{
+    const _renderPlaces = renderPlaces(places, onSelectPlace, selectedPlaces);
     console.log('MovieDetailsView selectedDate', selectedDate);
     return(
         <Wrapper>
@@ -264,7 +278,6 @@ const MovieDetailsView = ({places, selectedDate,selectedTime}):Props =>{
               <PlacesEndRow>
                   <NumberRowView>
                     <NumberRow>
-                        {number}
                     </NumberRow>
                   </NumberRowView>
 
