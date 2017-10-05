@@ -146,9 +146,12 @@ const imgUri = [
     require('../../img/layer_ticket.png'),
 ];
 
-const TicketsView = ({selectedDate, selectedTime, checkInputUserData}):Props => {
+const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPlaces, prices}):Props => {
 
     console.log('TicketsView selectedDate', selectedDate);
+    console.log('TicketsView selectedPlaces', selectedPlaces);
+    console.log('TicketsView selectedPlaces', prices);
+    console.log ('selectedPlaces.numberRow', selectedPlaces.numberRow );
     return (
 
             <ImageStyle source={imgUri[0]} resizeMode="cover" >
@@ -172,10 +175,9 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData}):Props => 
                              <TextTicket>Квитки:</TextTicket>
                          </InfoFilmsColumnLeft>
                            <InfoColumnRight>
-                               <TextTicket>ряд 3, мсце 11, ціна 45 грн</TextTicket>
-                               <TextTicket>ряд 3, мсце 12, ціна 45 грн</TextTicket>
-                               <TextTicket>ряд 3, мсце 13, ціна 45 грн</TextTicket>
-                               <TextTicket>ряд 3, мсце 14, ціна 45 грн</TextTicket>
+
+                               <TextTicket>{[selectedPlaces.numberRow]}{selectedPlaces.numberPlace}{prices}</TextTicket>
+
                            </InfoColumnRight>
                        </InfoStringBottom>
                    </ContainerTicket>
