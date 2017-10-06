@@ -16,17 +16,22 @@ export default class Tickets extends Component {
                  console.log('name', name );
                  console.log('telephone' , tel);
                  console.log('mail', mail);
-                 if (name.length <=0 && tel.length <=0 && mail.length <=0 ) return false;
+                 if (name.length <=0 && tel.length <=0  ) return false;
              }
 
 
-    handleCheckInputUserData = (checkInput) => {
-        this.setState( { checkInput } );
+    handleCheckInputUserData = (name,usertel,usermail) => {
+        this.setState( { name,usertel,usermail } );
+
+
     };
+
+
     render(){
         console.log('tickets  selectedDate', this.props.date);
         console.log('tickets  selectedPlace', this.props.places);
         console.log('tickets  selectedPlace', this.props.price);
+
         return(
             <TicketsView places={this.places}
                          selectedDate={this.props.date}
@@ -34,6 +39,7 @@ export default class Tickets extends Component {
                          checkInputUserData={this.props.handleCheckInputUserData}
                          selectedPlaces={this.props.places}
                          prices={this.props.price}
+                         checkInputValue={this.checkInput}
             />
 
         )

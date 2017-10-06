@@ -13,6 +13,7 @@ export default class MovieDetails extends Component {
         this.places = [];
         this.initialPlaces();
     }
+
     initialPlaces() {
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 14; j++) {
@@ -21,44 +22,45 @@ export default class MovieDetails extends Component {
         }
     }
 
-    handleSelectPlace = (row, place) =>{
+    handleSelectPlace = (row, place) => {
         const selectedPlace = this.state.selectedPlace;
-        if(selectedPlace.length === 0){
+        if (selectedPlace.length === 0) {
             const newStateArray = selectedPlace ? selectedPlace.slice() : [];
-            newStateArray.push({ numberRow: row, numberPlace: place });
-            this.setState({selectedPlace : newStateArray});
+            newStateArray.push({numberRow: row, numberPlace: place});
+            this.setState({selectedPlace: newStateArray});
             console.log('!!!row', row);
             console.log('!!!place', place);
         }
-        else if(selectedPlace.length > 0){
-            const placeElement = selectedPlace.find((item)=>{
+        else if (selectedPlace.length > 0) {
+            const placeElement = selectedPlace.find((item) => {
                 return (item.numberPlace === place && item.numberRow === row);
             });
 
-            if(placeElement){
+            if (placeElement) {
                 console.log('delete', place);
                 console.log('delete', row);
 
                 const filteredPlaces = [];
-                    selectedPlace.forEach((item)=>{
-                    if(item.numberPlace === place && item.numberRow === row){
+                selectedPlace.forEach((item) => {
+                    if (item.numberPlace === place && item.numberRow === row) {
                         return false;
                     }
-                    else{
+                    else {
                         filteredPlaces.push(item);
                     }
 
                 });
-                this.setState({selectedPlace: filteredPlaces });
+                this.setState({selectedPlace: filteredPlaces});
                 console.log('!!!filteredPlaces', filteredPlaces);
             }
-            else{
+            else {
                 const newStateArray = selectedPlace ? selectedPlace.slice() : [];
-                newStateArray.push({ numberRow: row, numberPlace: place });
-                this.setState({selectedPlace : newStateArray});
+                newStateArray.push({numberRow: row, numberPlace: place});
+                this.setState({selectedPlace: newStateArray});
                 console.log('!!!row', row);
                 console.log('!!!place', place);
             }
+
         }
     };
 

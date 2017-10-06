@@ -146,12 +146,22 @@ const imgUri = [
     require('../../img/layer_ticket.png'),
 ];
 
-const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPlaces, prices}):Props => {
+
+
+const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPlaces, prices,checkInputValue}):Props => {
+
+
+    calcPlaces = (s) => {
+        const a = 65;
+        const result = a * s;
+        return result
+    }
+
+    const calc = calcPlaces(selectedPlaces.length);
 
     console.log('TicketsView selectedDate', selectedDate);
     console.log('TicketsView selectedPlaces', selectedPlaces);
-    console.log('TicketsView selectedPlaces', prices);
-    console.log ('selectedPlaces.numberRow', selectedPlaces.numberRow );
+    console.log('TicketsView prices', prices);
     return (
 
             <ImageStyle source={imgUri[0]} resizeMode="cover" >
@@ -167,17 +177,18 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                        <InfoFilmsColumnRight>
                            <TextTicket>Форсаж 8</TextTicket>
                            <TextTicket>Хмельницький Oasis</TextTicket>
-                           <TextTicket>2D, {selectedDate.dateString} {selectedTime} </TextTicket>
+                           <TextTicket>2D, {selectedDate.filteredPlaces} {selectedTime} </TextTicket>
                        </InfoFilmsColumnRight>
                      </InfoStringTop>
                        <InfoStringBottom>
                          <InfoFilmsColumnLeft>
                              <TextTicket>Квитки:</TextTicket>
                          </InfoFilmsColumnLeft>
-                           <InfoColumnRight>
+                           <InfoColumnRight >
 
-                               <TextTicket>{[selectedPlaces.numberRow]}{selectedPlaces.numberPlace}{prices}</TextTicket>
-
+                               {selectedPlaces.map(places =>
+                               <TextTicket>ряд {places.numberRow}, место {places.numberPlace}, цена {prices} грн </TextTicket>
+                               )}
                            </InfoColumnRight>
                        </InfoStringBottom>
                    </ContainerTicket>
@@ -212,14 +223,14 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                       </CircleView>
                             <InAllView>
                                 <InAllText>Всього:</InAllText>
-                                <InAllPriceText>180 грн</InAllPriceText>
+                                <InAllPriceText>{calc} грн</InAllPriceText>
                             </InAllView>
                          <InputLineSet>
                             <InputLineView>
                                 <TextInput
                                     style={styles.input}
                                     editable={true}
-                                    onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                    onChangeText={(name) => ({name})}
                                     placeholder='Ваше імʼя'
                                     //ref='username'
                                     returnKeyType='next'
@@ -231,7 +242,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                                 <TextInput
                                     style={styles.input}
                                     editable={true}
-                                    onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                    onChangeText={(usertel) => ({usertel})}
                                     placeholder='Ваш номер телефону'
                                     returnKeyType='next'
                                     value={checkInputUserData}
@@ -242,7 +253,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                                  <TextInput
                                      style={styles.input}
                                      editable={true}
-                                     onChangeText={(checkInputUserData) => ({checkInputUserData})}
+                                     onChangeText={(usermail) => ({usermail})}
                                      placeholder='Email для отримання коду замовлення'
                                      returnKeyType='next'
                                      value={checkInputUserData}
@@ -257,9 +268,11 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                         </TextMail>
                         </MailView>
                         <OnPressView onPress={
-                            () => {Actions.payment({
+                            () =>  {checkInputValue({
                                 date: selectedDate,
                                 time: selectedTime,
+
+
                               })
                             }}
                         >

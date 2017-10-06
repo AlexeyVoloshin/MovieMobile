@@ -291,7 +291,7 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
                         date: selectedDate,
                         time: selectedTime,
                         places: selectedPlaces,
-                        price: ",ціна 45 грн",
+                        price: 65,
                     })
                  }}
             >
