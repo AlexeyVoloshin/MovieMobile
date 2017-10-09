@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Text, TextInput, AppRegistry, TouchableOpacity, StyleSheet, KeyboardAvoidingView   } from 'react-native';
+import { View, Text, TextInput, AppRegistry, TouchableOpacity, StyleSheet, KeyboardAvoidingView, ScrollView   } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const Wrapper = styled.View`    
@@ -148,7 +148,7 @@ const imgUri = [
 
 
 
-const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPlaces, prices,checkInputValue}):Props => {
+const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,checkInput,checkInputMail, selectedPlaces, prices}):Props => {
 
 
     calcPlaces = (s) => {
@@ -165,6 +165,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
     return (
 
             <ImageStyle source={imgUri[0]} resizeMode="cover" >
+                <ScrollView>
         <Wrapper>
                 <TextOrder>Ваше замолення</TextOrder>
                    <ContainerTicket>
@@ -177,19 +178,22 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                        <InfoFilmsColumnRight>
                            <TextTicket>Форсаж 8</TextTicket>
                            <TextTicket>Хмельницький Oasis</TextTicket>
-                           <TextTicket>2D, {selectedDate.filteredPlaces} {selectedTime} </TextTicket>
+                           <TextTicket>2D, {selectedDate.dateString} {selectedTime} </TextTicket>
                        </InfoFilmsColumnRight>
                      </InfoStringTop>
                        <InfoStringBottom>
                          <InfoFilmsColumnLeft>
                              <TextTicket>Квитки:</TextTicket>
                          </InfoFilmsColumnLeft>
+
                            <InfoColumnRight >
 
                                {selectedPlaces.map(places =>
                                <TextTicket>ряд {places.numberRow}, место {places.numberPlace}, цена {prices} грн </TextTicket>
                                )}
+
                            </InfoColumnRight>
+
                        </InfoStringBottom>
                    </ContainerTicket>
                       <CircleView>
@@ -230,11 +234,11 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                                 <TextInput
                                     style={styles.input}
                                     editable={true}
-                                    onChangeText={(name) => ({name})}
+                                    onChangeText={checkInputName}
                                     placeholder='Ваше імʼя'
                                     //ref='username'
                                     returnKeyType='next'
-                                    value={checkInputUserData}
+                                    //value={checkInputUserData}
                                     underlineColorAndroid={"transparent"}
                                 />
                              </InputLineView>
@@ -242,10 +246,10 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                                 <TextInput
                                     style={styles.input}
                                     editable={true}
-                                    onChangeText={(usertel) => ({usertel})}
+                                    onChangeText={checkInputTel}
                                     placeholder='Ваш номер телефону'
                                     returnKeyType='next'
-                                    value={checkInputUserData}
+                                    //value={checkInputUserData}
                                     underlineColorAndroid={"transparent"}
                                 />
                                 </InputLineView>
@@ -253,10 +257,10 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                                  <TextInput
                                      style={styles.input}
                                      editable={true}
-                                     onChangeText={(usermail) => ({usermail})}
+                                     onChangeText={checkInputMail}
                                      placeholder='Email для отримання коду замовлення'
                                      returnKeyType='next'
-                                     value={checkInputUserData}
+                                     //value={checkInputUserData}
                                      underlineColorAndroid={"transparent"}
                                  />
                              </InputLineView>
@@ -267,21 +271,15 @@ const TicketsView = ({selectedDate, selectedTime, checkInputUserData, selectedPl
                             кодом бронювання та квитками.
                         </TextMail>
                         </MailView>
-                        <OnPressView onPress={
-                            () =>  {checkInputValue({
-                                date: selectedDate,
-                                time: selectedTime,
-
-
-                              })
-                            }}
-                        >
+                        <OnPressView onPress={() =>  checkInput()}>
                     <BuyView>
                         <Buy>Купити</Buy>
                     </BuyView>
                         </OnPressView>
                 </Wrapper>
+        </ScrollView>
             </ImageStyle>
+
     )
 };
 export default TicketsView;
