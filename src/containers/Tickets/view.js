@@ -137,7 +137,7 @@ const styles= StyleSheet.create({
         justifyContent: 'center',
         marginTop: 10,
     }
-})
+});
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
@@ -151,13 +151,12 @@ const imgUri = [
 const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,checkInput,checkInputMail, selectedPlaces, prices}):Props => {
 
 
-    calcPlaces = (s) => {
-        const a = 65;
-        const result = a * s;
+    calcPlaces = (s,b) => {
+        const result = b * s;
         return result
-    }
+    };
 
-    const calc = calcPlaces(selectedPlaces.length);
+    const calc = calcPlaces(selectedPlaces.length, prices);
 
     console.log('TicketsView selectedDate', selectedDate);
     console.log('TicketsView selectedPlaces', selectedPlaces);
@@ -229,6 +228,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
                                 <InAllText>Всього:</InAllText>
                                 <InAllPriceText>{calc} грн</InAllPriceText>
                             </InAllView>
+                      <KeyboardAvoidingView behavior="padding">
                          <InputLineSet>
                             <InputLineView>
                                 <TextInput
@@ -238,7 +238,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
                                     placeholder='Ваше імʼя'
                                     //ref='username'
                                     returnKeyType='next'
-                                    //value={checkInputUserData}
+                                    onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
                                     underlineColorAndroid={"transparent"}
                                 />
                              </InputLineView>
@@ -249,7 +249,9 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
                                     onChangeText={checkInputTel}
                                     placeholder='Ваш номер телефону'
                                     returnKeyType='next'
-                                    //value={checkInputUserData}
+                                    keyboardType="numeric"
+                                    ref={(input) => this.telephonInput = input}
+                                    onSubmitEditing={() => this.MailInput.focus()}
                                     underlineColorAndroid={"transparent"}
                                 />
                                 </InputLineView>
@@ -259,23 +261,25 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
                                      editable={true}
                                      onChangeText={checkInputMail}
                                      placeholder='Email для отримання коду замовлення'
-                                     returnKeyType='next'
-                                     //value={checkInputUserData}
+                                     returnKeyType='go'
+                                     keyboardType="email-address"
+                                     ref={(input) => this.MailInput = input}
                                      underlineColorAndroid={"transparent"}
                                  />
                              </InputLineView>
                             </InputLineSet>
+                      </KeyboardAvoidingView>
                         <MailView>
-                         <TextMail>
-                            На вказаний email Ви отримаєте повідомлення з деталями замовлення,
-                            кодом бронювання та квитками.
-                        </TextMail>
+                             <TextMail>
+                                На вказаний email Ви отримаєте повідомлення з деталями замовлення,
+                                кодом бронювання та квитками.
+                            </TextMail>
                         </MailView>
-                        <OnPressView onPress={() =>  checkInput()}>
-                    <BuyView>
-                        <Buy>Купити</Buy>
-                    </BuyView>
-                        </OnPressView>
+                            <OnPressView onPress={() =>  checkInput({calc})}>
+                                <BuyView>
+                                    <Buy>Купити</Buy>
+                                </BuyView>
+                            </OnPressView>
                 </Wrapper>
         </ScrollView>
             </ImageStyle>

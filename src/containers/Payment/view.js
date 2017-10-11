@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView  } from 'react-native';
+import { Text, View, ListView, TextInput, StyleSheet, Span  } from 'react-native';
 import { Action } from 'react-native-router-flux';
 
 
@@ -95,7 +95,7 @@ const PeriodView = styled.View`
 `;
 const Period = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
-       color: #9ba2adff
+       color: #9ba2adff;
 `;
 const PeriodInput = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
@@ -105,7 +105,7 @@ const PeriodInput = styled.Text`
        background-color: #ffffffff;
        border-color: #9ba2adff;
        border-width: 1;
-       border-radius:20;
+       border-radius: 20;
        padding-horizontal: 18;
        margin-top: 5;
 `;
@@ -117,7 +117,7 @@ const PeriodInputCvv = styled.Text`
        background-color: #ffffffff;
        border-color: #9ba2adff;
        border-width: 1;
-       border-radius:20;
+       border-radius:10;
        padding-horizontal: 20;
        margin-top: 5;
 `;
@@ -135,8 +135,7 @@ const HeadLineView = styled.View`
       flex-direction: column;
 `;
 const CardLineView = styled.View`
-     margin-horizontal: 15;
-     margin-top: 30;
+     
 `;
 const imgUri = [
     require('../../img/layer_5.png'),
@@ -146,9 +145,44 @@ const imgUri = [
     require('../../img/card.png'),
     require('../../img/shape-2-copy.png'),
 ];
+const styles= StyleSheet.create({
+    container: {
+        paddingTop: 23
+    },
+    input: {
+        height: 30,
+        borderColor: '#9ba2adff',
+        marginHorizontal: 30,
+        borderWidth: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        margin: 10,
+        padding: 5,
+        fontSize: 14,
+        fontFamily: 'lightItalic',
+        borderRadius: 20,
+    },
+    inputCvv:{
+        height: 25,
+        borderColor: '#9ba2adff',
+        marginHorizontal: 10,
+        borderWidth: 1,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        margin: 5,
+        padding: 5,
+        fontSize: 14,
+        fontFamily: 'lightItalic',
+        borderRadius: 20,
+    },
+    twit: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        marginTop: 10,
+    }
+});
+
 const Space = ("       ");
 
-const PaymentView = ({selectedDate,selectedTime}):Props =>{
+const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
 
     return(
         <ImageStyle source={imgUri[0]}>
@@ -167,7 +201,7 @@ const PaymentView = ({selectedDate,selectedTime}):Props =>{
                           <Forma source={imgUri[2]} resizeMode="contain"/>
                           <InfoViewText>
                               <ShapeText>Всього до оплаты</ShapeText>
-                              <ShapeText>55 грн</ShapeText>
+                              <ShapeText>{pay} грн</ShapeText>
                           </InfoViewText>
                        </InfoViewIcon>
                       <InfoViewIcon>
@@ -178,9 +212,16 @@ const PaymentView = ({selectedDate,selectedTime}):Props =>{
                       </InfoViewIcon>
                   </HeadLineView>
                         <CardLineView>
-                            <CardLine>
-                               XXXX XXXX XXXX XXXX
-                            </CardLine>
+                            <TextInput
+                                style={styles.input}
+                                editable={true}
+                                //onChangeText={checkInputName}
+                                placeholder='XXXX XXXX XXXX XXXX'
+                                returnKeyType='next'
+                                //onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
+                                underlineColorAndroid={"transparent"}
+                                keyboardType="numeric"
+                            />
                         </CardLineView>
                             <PeriodInputView>
                                 <PeriodView>
@@ -189,7 +230,13 @@ const PaymentView = ({selectedDate,selectedTime}):Props =>{
                                 </PeriodView>
                                 <CvvView>
                                     <CVV>CVV2/CVC2</CVV>
-                                    <PeriodInputCvv>{Space}</PeriodInputCvv>
+                                    <TextInput
+                                        style={styles.inputCvv}
+                                        editable={true}
+                                        underlineColorAndroid={"transparent"}
+                                        placeholder='xxx'
+                                        keyboardType="numeric"
+                                    />
                                 </CvvView>
                             </PeriodInputView>
                                  <CardImageView>

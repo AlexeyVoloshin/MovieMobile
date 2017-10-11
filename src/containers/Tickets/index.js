@@ -19,17 +19,17 @@ export default class Tickets extends Component {
                     checkInputMail=(text)=>{
                     this.setState({usermail: text})
                          };
-                         checkInput =()=>{
+                         checkInput =({calc})=>{
 
                              const name = this.state.username;
                              const tel = this.state.usertel;
                              const mail = this.state.usermail;
                              if (name.length <=0 && tel.length <=0 && mail.length <=0  ) return false;
-                         this.Tickets();
+                         this.Tickets({calc});
                          };
-                        Tickets()
+                        Tickets({calc})
                         {
-                            Actions.payment();
+                            Actions.payment({calc});
                         }
 
     render(){
