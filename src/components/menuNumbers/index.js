@@ -1,20 +1,27 @@
 import React, {Component} from "react";
 import { Text, View, ListView  } from 'react-native';
-import menuNumbersView from './view';
+import MenuNumbersView from './view';
 
-        const menueElem = document.getElementById('CVV');
-        const titleElem = menuElem.querySelector('.title');
 
-        titleElem.onclick = function () {
-            menueElem.classList.toggle('open');
-        };
-export default class menuNumbers extends Component {
+export default class MenuNumbers extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {user: ''};
+    }
+
+    updateUser = (itemValue, itemIndex) => {
+        console.log('itemValue', itemValue);
+        console.log('itemIndex', itemIndex);
+        this.setState({user: itemIndex})
+    }
 
     render(){
         return (
-            <menuNumbersView
-
+            <MenuNumbersView
+                onChange={this.updateUser}
+                 selected={this.state.user}
               />
         );
     }
 }
+

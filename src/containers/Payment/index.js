@@ -15,6 +15,7 @@ export default class Payment extends Component {
                 selectedDate={this.props.date}
                 selectedTime={this.props.time}
                 pay={this.props.calc}
+
             />
 
         )

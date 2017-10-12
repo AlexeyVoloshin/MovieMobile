@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView, TextInput, StyleSheet, Span  } from 'react-native';
+import { Text, View, ListView, TextInput, StyleSheet, Span, ScrollView  } from 'react-native';
 import { Action } from 'react-native-router-flux';
-
+import MenuNumbers from '../../components/menuNumbers';
 
 const Row = styled.View`
      background-color: #ffffffff;
@@ -97,17 +97,15 @@ const Period = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
        color: #9ba2adff;
 `;
-const PeriodInput = styled.Text`
-       fontFamily: SF-UI-Display-Semibold;
-       fontSize: 12;
-       color: #9ba2adff;
-       text-align: center;
-       background-color: #ffffffff;
+const PeriodInput = styled.View`
+    width: 100%;
        border-color: #9ba2adff;
        border-width: 1;
        border-radius: 20;
-       padding-horizontal: 18;
+       padding-horizontal: 10;
+       padding-vertical: 5;
        margin-top: 5;
+       justify-content: space-between;
 `;
 const PeriodInputCvv = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
@@ -122,7 +120,8 @@ const PeriodInputCvv = styled.Text`
        margin-top: 5;
 `;
 const PeriodInputView = styled.View`
-      flex-direction: row;
+      width: 100%;
+      background-color: red;
       margin-top: 10;
 `;
 const CVV = styled.Text`
@@ -177,17 +176,27 @@ const styles= StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
         marginTop: 10,
+    },
+    text: {
+        fontSize: 40,
+        alignSelf: 'center',
+        color: 'red',
+        paddingHorizontal: 50,
+        paddingVertical: 10,
     }
-});
 
+});
+console.log(' menuNumbers', MenuNumbers);
 const Space = ("       ");
 
 const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
 
     return(
+
         <ImageStyle source={imgUri[0]}>
             <Row>
-
+                <View>
+                </View>
                 <HeadLine>Платіжна інформація</HeadLine>
                   <HeadLineView>
                       <InfoViewIcon>
@@ -226,7 +235,9 @@ const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
                             <PeriodInputView>
                                 <PeriodView>
                                     <Period>Строк дії до:</Period>
-                                    <PeriodInput>01/<Arrow source={imgUri[5]}/>{Space}01/<Arrow source={imgUri[5]}/>{Space}</PeriodInput>
+                                <ScrollView>
+                                    <PeriodInput ><MenuNumbers /></PeriodInput>
+                                </ScrollView>
                                 </PeriodView>
                                 <CvvView>
                                     <CVV>CVV2/CVC2</CVV>
