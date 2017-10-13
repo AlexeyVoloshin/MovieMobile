@@ -98,7 +98,6 @@ const Period = styled.Text`
        color: #9ba2adff;
 `;
 const PeriodInput = styled.View`
-    width: 100%;
        border-color: #9ba2adff;
        border-width: 1;
        border-radius: 20;
@@ -106,6 +105,7 @@ const PeriodInput = styled.View`
        padding-vertical: 5;
        margin-top: 5;
        justify-content: space-between;
+       
 `;
 const PeriodInputCvv = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
@@ -236,7 +236,7 @@ const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
                                 <PeriodView>
                                     <Period>Строк дії до:</Period>
                                 <ScrollView>
-                                    <PeriodInput ><MenuNumbers /></PeriodInput>
+                                    <PeriodInput><MenuNumbers/></PeriodInput>
                                 </ScrollView>
                                 </PeriodView>
                                 <CvvView>

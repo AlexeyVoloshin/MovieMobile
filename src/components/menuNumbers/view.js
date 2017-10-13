@@ -4,10 +4,10 @@ import styled from 'styled-components/native';
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 60,
+        fontSize: 5,
         alignSelf: 'center',
         color: 'red',
-        paddingHorizontal: 100,
+
     }
 });
 
@@ -23,21 +23,14 @@ const MenuNumbersView  = ({ onChange,selected }):Props =>  {
                   >
 
                       <Picker.Item label = "steve" value = "steve" />
-                      <Picker.Item label = "2" value = "ellen" />
-                      <Picker.Item label = "3" value = "maria" />
-                      <Picker.Item label = "4" value = "steve" />
-                      <Picker.Item label = "5" value = "ellen" />
-                      <Picker.Item label = "6" value = "maria" />
-                      <Picker.Item label = "7" value = "steve" />
-                      <Picker.Item label = "8" value = "ellen" />
-                      <Picker.Item label = "9" value = "maria" />
-                      <Picker.Item label = "10" value = "steve" />
-                      <Picker.Item label = "11" value = "ellen" />
-                      <Picker.Item label = "12" value = "maria" />
+                      <Picker.Item label = "ellen" value = "ellen" />
+                      <Picker.Item label = "maria" value = "maria" />
+                      <Picker.Item label = "steve" value = "steve" />
+                      <Picker.Item label = "ellen" value = "ellen" />
 
 
                   </Picker>
-                  <Text>{selected}</Text>
+                  <Text >{selected}</Text>
               </View>
         );
 };
