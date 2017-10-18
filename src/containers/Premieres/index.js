@@ -9,7 +9,7 @@ export default class Premieres extends Component {
     constructor(props) {
         super(props);
         this.state={
-            isLoading: false,
+            isLoading: true,
             movie: null,
             selectedDate: null,
         }
@@ -18,13 +18,13 @@ export default class Premieres extends Component {
         this.setState( { selectedDate } );
     }
     componentDidMount() {
-        /*const self = this;
+
         getAllMovie().then((value) => {
             console.log("metka", value);
             let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-            self.setState({isLoading: false, movie: ds.cloneWithRows(value),});
+            this.setState({isLoading: false, movie: ds.cloneWithRows(value.message),});
 
-        }); */
+        });
     }
     render(){
         if (this.state.isLoading){
@@ -34,7 +34,7 @@ export default class Premieres extends Component {
                 </Text>
             );
         }
-
+        console.log("this.state.movie",this.state.movie);
 
         return(
 

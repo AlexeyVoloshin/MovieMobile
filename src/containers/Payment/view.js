@@ -13,46 +13,46 @@ const Row = styled.View`
      flexDirection: column;
 `;
 const Forma = styled.Image`  
-       width: 20;
-       height: 30;
+     width: 20;
+     height: 30;
 `;
 const Shape = styled.Image`
-       width: 20;
-       height: 25;
+     width: 20;
+     height: 25;
 `;
 const ShapeInfo = styled.Image`   
-       width: 20;
-       height: 30;
+     width: 20;
+     height: 30;
 `;
 const ShapeText = styled.Text`
-       fontFamily: SF-UI-Display-Semibold;
-       margin-left: 10;
-       color: #000;
-       fontSize: 15;
+     fontFamily: SF-UI-Display-Semibold;
+     margin-left: 10;
+     color: #000;
+     fontSize: 15;
 `;
 const InfoViewIcon = styled.View` 
-        flex-direction: row;
-        margin-top: 15;
+     flex-direction: row;
+     margin-top: 15;
 `;
 const InfoViewText = styled.View` 
 `;
 const Next = styled.Text`
-       fontFamily: SFUIDisplay-Medium;
-       fontSize: 15;
-       color: #ffffffff;
-       text-align: center;
+     fontFamily: SFUIDisplay-Medium;
+     fontSize: 15;
+     color: #ffffffff;
+     text-align: center;
 `;
 const NextView = styled.View`
-        margin-bottom: 30;
-        margin-top: 20;
-        border-radius:30;
-        background-color: #f15459ff;
-        margin-horizontal: 40;
-        padding-vertical: 7;
+     margin-bottom: 30;
+     margin-top: 20;
+     border-radius:30;
+     background-color: #f15459ff;
+     margin-horizontal: 40;
+     padding-vertical: 7;
 `;
 const CardImage = styled.Image` 
-       width: 100%;
-       height: 35;
+     width: 100%;
+     height: 35;
 `;
 const CardImageView = styled.View`
       margin-horizontal: 40;
@@ -63,66 +63,40 @@ const ImageStyle = styled.Image`
       height: 100%;
       position: absolute;
 `;
-const Arrow = styled.Image`
-       width: 25;
-       height: 25;
-       margin-bottom: 20;
-`;
 const HeadLine = styled.Text`
-       fontFamily: SFUIDisplay-Bold;
-       margin-top: 25;
-       fontSize: 20;
-       color: #000;
-       text-align: center;
-`;
-const CardLine = styled.Text`
-       fontFamily: SF-UI-Display-Semibold;
-       fontSize: 20;
-       color: #9ba2adff;
-       text-align: center;
-       background-color: #ffffffff;
-       border-color: #9ba2adff;
-       padding-vertical: 6;
-       border-width: 1;
-       border-radius:20;
+      fontFamily: SFUIDisplay-Bold;
+      margin-top: 25;
+      fontSize: 20;
+      color: #000;
+      text-align: center;
 `;
 const CvvView = styled.View`
-      
 `;
 const PeriodView = styled.View`
-       margin-right: 20;
-       margin-left: 20;
 `;
 const Period = styled.Text`
        fontFamily: SF-UI-Display-Semibold;
        color: #9ba2adff;
 `;
+
 const PeriodInput = styled.View`
-       border-color: #9ba2adff;
        border-width: 1;
        border-radius: 20;
-       padding-horizontal: 10;
-       padding-vertical: 5;
-       margin-top: 5;
-       justify-content: space-between;
-       
-`;
-const PeriodInputCvv = styled.Text`
-       fontFamily: SF-UI-Display-Semibold;
-       fontSize: 12;
-       color: #9ba2adff;
-       text-align: center;
-       background-color: #ffffffff;
        border-color: #9ba2adff;
-       border-width: 1;
-       border-radius:10;
-       padding-horizontal: 20;
-       margin-top: 5;
+       margin-top: 2;
+       height: 26;
+       flex-direction: row;
 `;
 const PeriodInputView = styled.View`
-      width: 100%;
-      background-color: red;
+      margin-horizontal: 65;
       margin-top: 10;
+      flex-direction: row;
+`;
+const ContainerPeriod = styled.View`
+      justify-content: center;
+      width: 50;
+      height: 34;
+      padding-bottom: 8;
 `;
 const CVV = styled.Text`
       color: #9ba2adff
@@ -131,7 +105,6 @@ const CVV = styled.Text`
 const HeadLineView = styled.View`
       margin-top: 30;
       margin-left: 30;
-      flex-direction: column;
 `;
 const CardLineView = styled.View`
      
@@ -178,11 +151,10 @@ const styles= StyleSheet.create({
         marginTop: 10,
     },
     text: {
-        fontSize: 40,
+        fontSize: 10,
         alignSelf: 'center',
         color: 'red',
-        paddingHorizontal: 50,
-        paddingVertical: 10,
+
     }
 
 });
@@ -225,7 +197,7 @@ const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
                                 style={styles.input}
                                 editable={true}
                                 //onChangeText={checkInputName}
-                                placeholder='XXXX XXXX XXXX XXXX'
+                                placeholder='         XXXX XXXX XXXX XXXX'
                                 returnKeyType='next'
                                 //onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
                                 underlineColorAndroid={"transparent"}
@@ -235,17 +207,20 @@ const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
                             <PeriodInputView>
                                 <PeriodView>
                                     <Period>Строк дії до:</Period>
-                                <ScrollView>
-                                    <PeriodInput><MenuNumbers/></PeriodInput>
-                                </ScrollView>
+
+                                        <PeriodInput>
+                                                 <ContainerPeriod><MenuNumbers/></ContainerPeriod>
+                                                 <ContainerPeriod><MenuNumbers/></ContainerPeriod>
+                                        </PeriodInput>
                                 </PeriodView>
+
                                 <CvvView>
                                     <CVV>CVV2/CVC2</CVV>
                                     <TextInput
                                         style={styles.inputCvv}
                                         editable={true}
                                         underlineColorAndroid={"transparent"}
-                                        placeholder='xxx'
+                                        placeholder='    XXX'
                                         keyboardType="numeric"
                                     />
                                 </CvvView>

@@ -48,14 +48,6 @@ const SquaresView = styled.TouchableOpacity`
     border-radius: 2;
     margin: 0 5px 5px 0;
 `;
-
-const SquaresViewVip = styled.View`
-    width: 12;
-    height: 12;
-    background-color: #4c6bacff;
-    border-radius: 2;
-    margin: 0 5px 5px 0;
-`;
 const SquaresText = styled.Text`
     fontSize: 10;
     color: #ffffffff;
@@ -97,7 +89,6 @@ const NextView = styled.View`
 `;
 const Places = styled.View`
     background-color: gray;
-    
 `;
 const PlacesEndRow = styled.View`
     margin-horizontal: 60;
@@ -107,7 +98,6 @@ const PlacesRow = styled.View`
     margin-top: 1;
     flex-direction: row;
     justifyContent: space-between;
-    
 `;
 const NumberRowView = styled.View`
     background-color: green;
@@ -127,7 +117,6 @@ const imgUri = [
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
-
 const isActivePlace = (selectedPlaces, numberRow, numberPlace) =>{
     const placeElement = selectedPlaces.find((item)=>{
         return item.numberPlace === numberPlace && item.numberRow === numberRow;
@@ -149,7 +138,6 @@ const renderRow = (places, onSelectPlace, selectedPlaces) =>{
     console.log(<PlacesRow>{resultRow}</PlacesRow>);
     return <PlacesRow>{resultRow}</PlacesRow>;
 };
-
 const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
     console.log('renderPlaces', places.places);
     let tempArray = [];
@@ -164,8 +152,6 @@ const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
     });
     return resultPlaces;
 };
-
-
 const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, selectedPlaces }):Props =>{
     const _renderPlaces = renderPlaces(places, onSelectPlace, selectedPlaces);
     console.log('MovieDetailsView selectedDate', selectedDate);

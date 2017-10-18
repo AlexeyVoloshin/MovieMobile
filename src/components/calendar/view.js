@@ -54,6 +54,8 @@ class CalendarView extends Component {
             <Modal
                 visible={isShow}
                 transparent={true}
+                onRequestClose= {() => {console.log("Modal closed.")}}
+                animationType="slide"
             >
                 <CustomCalendar
                     theme={{

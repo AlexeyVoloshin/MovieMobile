@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView  } from 'react-native';
+import { Text, View, ListView, Image  } from 'react-native';
 import CalendarTest from '../../components/calendar';
 import { Actions } from 'react-native-router-flux';
 import calendar from '../../components/calendar';
+const Wrapper = styled.ListView`
 
+`;
 const Row = styled.View`
 `;
 const MoviePhoto = styled.Image`   
-   width: 240;
-   height: 265;
-   justify-content: center;
-   align-items: center;
-   flex-direction: row;
+    margin-horizontal: 53;
+    width: 285;
+    height: 285;
+    background-color: red;
 `;
 const PhotoMoviView = styled.View`
    margin-top: 20;
@@ -65,15 +66,17 @@ const imgUri = [
 
 const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
     console.log('PremieresView selectedDate', selectedDate);
-
+       console.log("allMovie", allMovie);
         return(
             <ImageStyle source={imgUri[0]}>
                 <StyledText>ФОРСАЖ 8</StyledText>
                 <Row>
+                    <Wrapper
+                        dataSource={allMovie}
+                        renderRow={(rowData) => <MoviePhoto source={{uri: rowData }}/>}
 
-                    <PhotoMoviView>
-                    <MoviePhoto source={imgUri[1]}/>
-                    </PhotoMoviView>
+                    />
+
                         <TextStyled>Розклад сеансів</TextStyled>
                          <DateStyled>
                           <CalendarTest
@@ -154,9 +157,6 @@ const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
         );
 };
 export default PremieresView;
-
-{/*<Wrapper
-                dataSource={allMovie}
-                renderRow={(rowData) => <MoviePhoto source={{uri: rowData.embedded.show.image.medium }}/>}
-
-            />*/}
+{/*<PhotoMoviView>
+                    <MoviePhoto source={imgUri[1]}/>
+                    </PhotoMoviView>*/}

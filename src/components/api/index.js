@@ -1,5 +1,5 @@
 export function getAllMovie(){
-    return fetch('http://api.tvmaze.com/schedule/full')
+    return fetch('https://dog.ceo/api/breed/hound/images')
         .then((response) => response.json())
         .then((responseJson) => {
             return responseJson;
