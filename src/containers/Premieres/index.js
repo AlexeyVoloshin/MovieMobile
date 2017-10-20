@@ -4,6 +4,7 @@ import PremieresView from './view';
 import styled from 'styled-components/native';
 import { getAllMovie } from '../../components/api';
 import {TabBar, Schema} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 export default class Premieres extends Component {
     constructor(props) {
@@ -26,6 +27,17 @@ export default class Premieres extends Component {
 
         });
     }
+    checkChoiceDateSession =(date,time)=>{
+
+        const ChoiceDateSession = this.handleSetSelectedDate;
+        console.log('!!!ChoiceDateSession', ChoiceDateSession);
+        if (ChoiceDateSession.length <= 0) return false;
+        this.Premieres(date,time);
+    };
+    Premieres(date,time)
+    {
+        Actions.movieDetails(date,time);
+    }
     render(){
         if (this.state.isLoading){
             return (
@@ -35,10 +47,10 @@ export default class Premieres extends Component {
             );
         }
         console.log("this.state.movie",this.state.movie);
-
         return(
 
             <PremieresView
+                checkChoiceDateSession = {this.checkChoiceDateSession}
                 allMovie = {this.state.movie}
                 selectedDate={this.state.selectedDate}
                 onSetSelectedDate={this.handleSetSelectedDate}

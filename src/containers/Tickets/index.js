@@ -7,11 +7,11 @@ import { Actions } from 'react-native-router-flux';
 export default class Tickets extends Component {
              constructor(props) {
                  super(props);
-                 this.state = { username:"", usertel: "",usermail: ""  };
+                 this.state = {username:"", usertel: "",usermail: ""};
              }
 
                 checkInputName=(text)=>{
-                             this.setState({username: text})
+                    this.setState({username: text})
                          };
                  checkInputTel=(text)=>{
                     this.setState({usertel: text})

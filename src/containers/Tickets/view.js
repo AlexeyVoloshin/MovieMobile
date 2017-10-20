@@ -14,12 +14,13 @@ const BuyView = styled.View`
     margin-top: 30;
     border-radius:30;
     background-color: #f15459ff;
-    margin-horizontal: 60;
-    padding-vertical: 10;
+    width: 250;
+    height: 32;
+    justify-content: center;
+    flex-direction: row;
 `;
 const MailView = styled.View`
     margin-top: 10;
-    justifyContent: flex-start;
     margin-horizontal: 50;
 `;
 const TextMail = styled.Text`
@@ -92,7 +93,7 @@ const SmallCircle = styled.View`
     width: 5;
     height: 5;
     background-color: #0d1927ff;
-    justifyContent: space-between;
+    justify-content: space-between;
 `;
 const ImageStyle = styled.Image`
    width: 100%;
@@ -116,6 +117,8 @@ const TextTicket = styled.Text`
 `;
 const OnPressView = styled.TouchableOpacity`
    height: 80px;
+   justify-content: center;
+   flex-direction: row;
 `;
 const styles= StyleSheet.create({
     container: {
@@ -275,7 +278,7 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
                                 кодом бронювання та квитками.
                             </TextMail>
                         </MailView>
-                            <OnPressView onPress={() =>  checkInput({calc})}>
+                            <OnPressView onPress={() => checkInput({calc})}>
                                 <BuyView>
                                     <Buy>Купити</Buy>
                                 </BuyView>

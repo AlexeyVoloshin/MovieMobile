@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Text, View, ListView  } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import VipPlace from "../../components/vipPlace"
 
 const Wrapper = styled.View`
     flex: 1;
@@ -42,8 +43,8 @@ const MovieSquare = styled.View`
     margin-left: 10;
 `;
 const SquaresView = styled.TouchableOpacity`
-    width: 16;
-    height: 16;
+    width: 15;
+    height: 15;
     background-color: ${props => props.color ? props.color : '#000'};
     border-radius: 2;
     margin: 0 5px 5px 0;
@@ -80,18 +81,21 @@ const Next = styled.Text`
     text-align: center;
 `;
 const NextView = styled.View`
-    margin-top: 10;
+    margin-top: 8;
     border-radius:30;
     background-color: #f15459ff;
     margin-horizontal: 80;
-    padding-vertical: 7;
-    margin-bottom:  15;
+    height: 32;
 `;
 const Places = styled.View`
-    background-color: gray;
+    
+`;
+const PlacesContainer = styled.View`
+    margin-horizontal: 23;
 `;
 const PlacesEndRow = styled.View`
-    margin-horizontal: 60;
+    margin-top: 6;
+    margin-left: 20;
     flex-direction: row;
 `;
 const PlacesRow = styled.View`
@@ -99,17 +103,39 @@ const PlacesRow = styled.View`
     flex-direction: row;
     justifyContent: space-between;
 `;
-const NumberRowView = styled.View`
-    background-color: green;
-    flex-direction: column;
+const TopPlaceView = styled.View`
+    width: 15;
+    height: 15;
+    border-radius: 2;
+    margin: 0 5px 5px 0;
+    background-color: #72bddcff;
 `;
-const NumberRow = styled.Text`
-    color: red; 
-    background-color: blue;
-    flex: 1;
+const TopPlaceContainer = styled.View`
+    flex-direction: row;
+    justify-content: center;
+`;
+const VipPlaceContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    justify-content: center;
+`;
+const TopPlaceText = styled.Text`
+    color: #72bddcff;  
 `;
 const OnPressView = styled.TouchableOpacity`
-   height: 60px;
+    height: 60px;
+`;
+const NumericPlaces = styled.View`
+    width: 16;
+    height: 16;
+    border-radius: 2;
+    margin: 0 5px 5px 0;
+`;
+const NumericPlaceText = styled.Text`
+    color: #6d727aff; 
+`;
+const NumericContainer = styled.View`
+    justify-content: center;
 `;
 const imgUri = [
     require('../../img/layer_5.png'),
@@ -131,7 +157,7 @@ const renderRow = (places, onSelectPlace, selectedPlaces) =>{
             <SquaresView
                 key={i}
                 onPress={() => onSelectPlace(item.numberRow, item.numberPlace)}
-                color={iasActive ? 'red' : 'steelblue'}
+                color={iasActive ? 'red' : '#72bddcff'}
             />
         );
     });
@@ -152,7 +178,8 @@ const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
     });
     return resultPlaces;
 };
-const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, selectedPlaces }):Props =>{
+
+const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, selectedPlaces, placesNumeric,TopPlace,checkChoiceDate }):Props =>{
     const _renderPlaces = renderPlaces(places, onSelectPlace, selectedPlaces);
     console.log('MovieDetailsView selectedDate', selectedDate);
     return(
@@ -248,10 +275,10 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
 
             </MovieInfo>
             <MovieSquare>
-                <SquaresView color="skyblue"/>
+                <SquaresView color="#72bddcff"/>
                 <SquaresText>GOOD 65 грн</SquaresText>
 
-                <SquaresView color="steelblue" />
+                <SquaresView color="#4d6babff" />
                 <SquaresText>Super LUX 65 грн</SquaresText>
 
                 <SquaresView color="gray" />
@@ -262,24 +289,36 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
 
             </MovieSquare>
               <PlacesEndRow>
-                  <NumberRowView>
-                    <NumberRow>
-                    </NumberRow>
-                  </NumberRowView>
-
+                  <NumericContainer>
+                      {placesNumeric.map((place) =>{
+                      return (<NumericPlaces><NumericPlaceText>{place.numericPlace}</NumericPlaceText>
+                      <NumericPlaceText>{place.numericRow}</NumericPlaceText></NumericPlaces>)
+                  })}
+                  </NumericContainer>
                 <Places>
-                    {_renderPlaces}
+                    <TopPlaceContainer>
+                    {TopPlace.map((place) =>{
+                        return (<TopPlaceView><TopPlaceText>{place.numericPlace}</TopPlaceText>
+                            <TopPlaceText>{place.numericRow}</TopPlaceText></TopPlaceView>)
+                    })}
+                    </TopPlaceContainer>
+                       <PlacesContainer>
+                          {_renderPlaces}
+                       </PlacesContainer>
+                    <VipPlaceContainer>
+                         <VipPlace/>
+                    </VipPlaceContainer>
                 </Places>
               </PlacesEndRow>
             <OnPressView
                 onPress={
-                    () => {Actions.tickets({
+                    () => checkChoiceDate({
                         date: selectedDate,
                         time: selectedTime,
                         places: selectedPlaces,
                         price: 65,
                     })
-                 }}
+                 }
             >
             <NextView>
             <Next>Далі</Next>

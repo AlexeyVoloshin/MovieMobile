@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView, Image  } from 'react-native';
+import { Text, View, ListView, Image, StyleSheet  } from 'react-native';
 import CalendarTest from '../../components/calendar';
 import { Actions } from 'react-native-router-flux';
+import Swiper from 'react-native-swiper';
 import calendar from '../../components/calendar';
 const Wrapper = styled.ListView`
 
@@ -13,7 +14,7 @@ const MoviePhoto = styled.Image`
     margin-horizontal: 53;
     width: 285;
     height: 285;
-    background-color: red;
+    background-color: #ffffffff;
 `;
 const PhotoMoviView = styled.View`
    margin-top: 20;
@@ -48,7 +49,7 @@ const TextStyledTime = styled.Text`
 const MovieDateContain = styled.View`
    flex-direction: row;
    justify-content: space-between;
-   height: 100%; 
+   
 `;
 const MovieDate = styled.Text`
    fontSize: 15;
@@ -63,19 +64,49 @@ const imgUri = [
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
+const styles = StyleSheet.create({
+    wrapper: {
+    },
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+    },
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97CAE5',
+    },
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92BBD9',
+    },
+    text: {
+        color: '#fff',
+        fontSize: 30,
+        fontWeight: 'bold',
+    }
+});
 
-const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
+const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate, checkChoiceDateSession }):Props => {
     console.log('PremieresView selectedDate', selectedDate);
        console.log("allMovie", allMovie);
         return(
+            <View>
             <ImageStyle source={imgUri[0]}>
                 <StyledText>ФОРСАЖ 8</StyledText>
                 <Row>
-                    <Wrapper
-                        dataSource={allMovie}
-                        renderRow={(rowData) => <MoviePhoto source={{uri: rowData }}/>}
 
-                    />
+                          <Wrapper horizontal={true}
+                                   scrollEnabled={true}
+                                   dataSource={allMovie}
+                                   renderRow={(rowData) => <MoviePhoto source={{uri: rowData }}/>}
+                            />
+
 
                         <TextStyled>Розклад сеансів</TextStyled>
                          <DateStyled>
@@ -87,66 +118,66 @@ const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
                         <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
 
                     <MovieDateContain>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "18:10",
                             })
-                        }}
+                        }
                         >
                             18:10
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "19:00",
                             })
-                        }}
+                        }
                         >
                             19:00
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "19:50",
                             })
-                        }}
+                        }
                         >
                             19:50
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "20:50",
                             })
-                        }}
+                        }
                         >
                             20:50
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "21:40",
                             })
-                        }}
+                        }
                         >
                             21:40
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "22:30",
                             })
-                        }}
+                        }
                         >
                             22:30
                         </MovieDate>
-                        <MovieDate onPress={ () => {Actions.movieDetails({
+                        <MovieDate onPress={ () => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "23:30",
                             })
-                        }}
+                        }
                         >
                             23:30
                         </MovieDate>
@@ -154,6 +185,7 @@ const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate }):Props => {
 
                 </Row>
             </ImageStyle>
+            </View>
         );
 };
 export default PremieresView;

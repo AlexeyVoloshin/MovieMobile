@@ -47,8 +47,10 @@ const NextView = styled.View`
      margin-top: 20;
      border-radius:30;
      background-color: #f15459ff;
-     margin-horizontal: 40;
-     padding-vertical: 7;
+     width: 250;
+     height: 32;
+     flex-direction: row;
+     justify-content: center;
 `;
 const CardImage = styled.Image` 
      width: 100%;
@@ -88,7 +90,7 @@ const PeriodInput = styled.View`
        flex-direction: row;
 `;
 const PeriodInputView = styled.View`
-      margin-horizontal: 65;
+      margin-left: 30;
       margin-top: 10;
       flex-direction: row;
 `;
