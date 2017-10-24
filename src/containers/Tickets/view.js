@@ -1,9 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { View, Text, TextInput, AppRegistry, TouchableOpacity, StyleSheet, KeyboardAvoidingView, ScrollView   } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {
+    View,
+    Text,
+    TextInput,
+    AppRegistry,
+    TouchableOpacity,
+    StyleSheet,
+    KeyboardAvoidingView,
+    ScrollView
+} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
-const Wrapper = styled.View`    
+const Wrapper = styled.View` 
+    flex: 1;
+    background-color: #0d1a27ff;
 `;
 const Buy = styled.Text`
    fontSize: 20;
@@ -85,7 +96,6 @@ const LargeCircleLeft = styled.View`
 const LargeCircleRight = styled.View`
     width: 10px;
     height: 20px;
-    border-radius: 3;
     background-color: #0d1927ff;
 `;
 const SmallCircle = styled.View`
@@ -95,11 +105,7 @@ const SmallCircle = styled.View`
     background-color: #0d1927ff;
     justify-content: space-between;
 `;
-const ImageStyle = styled.Image`
-   width: 100%;
-   height: 100%;
-   position: absolute;
-`;
+
 const ContainerTicket = styled.View`  
    margin-top: 30;
    background-color: #ffffffff;
@@ -120,7 +126,12 @@ const OnPressView = styled.TouchableOpacity`
    justify-content: center;
    flex-direction: row;
 `;
-const styles= StyleSheet.create({
+const ImageStyle = styled.Image`
+   width: 100%;
+   height: 100%;
+   position: absolute;
+`;
+const styles = StyleSheet.create({
     container: {
         paddingTop: 23
     },
@@ -150,11 +161,10 @@ const imgUri = [
 ];
 
 
+const TicketsView = ({selectedDate, selectedTime, checkInputName, checkInputTel, checkInput, checkInputMail, selectedPlaces, prices}): Props => {
 
-const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,checkInput,checkInputMail, selectedPlaces, prices}):Props => {
 
-
-    calcPlaces = (s,b) => {
+    calcPlaces = (s, b) => {
         const result = b * s;
         return result
     };
@@ -166,126 +176,132 @@ const TicketsView = ({selectedDate, selectedTime, checkInputName,checkInputTel,c
     console.log('TicketsView prices', prices);
     return (
 
-            <ImageStyle source={imgUri[0]} resizeMode="cover" >
-                <ScrollView>
+
+
         <Wrapper>
+            <ScrollView>
+                <ImageStyle source1={imgUri[0]} resizeMode="cover"/>
                 <TextOrder>Ваше замолення</TextOrder>
-                   <ContainerTicket>
-                     <InfoStringTop>
-                       <InfoFilmsColumnLeft>
-                           <TextTicket>Фільм:</TextTicket>
-                           <TextTicket>Кынотеатр:</TextTicket>
-                           <TextTicket>Сеанс:</TextTicket>
-                       </InfoFilmsColumnLeft>
-                       <InfoFilmsColumnRight>
-                           <TextTicket>Форсаж 8</TextTicket>
-                           <TextTicket>Хмельницький Oasis</TextTicket>
-                           <TextTicket>2D, {selectedDate.dateString} {selectedTime} </TextTicket>
-                       </InfoFilmsColumnRight>
-                     </InfoStringTop>
-                       <InfoStringBottom>
-                         <InfoFilmsColumnLeft>
-                             <TextTicket>Квитки:</TextTicket>
-                         </InfoFilmsColumnLeft>
+                <ContainerTicket>
+                    <InfoStringTop>
+                        <InfoFilmsColumnLeft>
+                            <TextTicket>Фільм:</TextTicket>
+                            <TextTicket>Кынотеатр:</TextTicket>
+                            <TextTicket>Сеанс:</TextTicket>
+                        </InfoFilmsColumnLeft>
+                        <InfoFilmsColumnRight>
+                            <TextTicket>Форсаж 8</TextTicket>
+                            <TextTicket>Хмельницький Oasis</TextTicket>
 
-                           <InfoColumnRight >
+                            <TextTicket>2D, {selectedDate.dateString} {selectedTime} </TextTicket>
 
-                               {selectedPlaces.map(places =>
-                               <TextTicket>ряд {places.numberRow}, место {places.numberPlace}, цена {prices} грн </TextTicket>
-                               )}
+                        </InfoFilmsColumnRight>
+                    </InfoStringTop>
+                    <InfoStringBottom>
+                        <InfoFilmsColumnLeft>
+                            <TextTicket>Квитки:</TextTicket>
+                        </InfoFilmsColumnLeft>
 
-                           </InfoColumnRight>
+                        <InfoColumnRight>
 
-                       </InfoStringBottom>
-                   </ContainerTicket>
-                      <CircleView>
-                          <LargeCircleLeft/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                              <SmallCircle/>
-                          <LargeCircleRight/>
+                            {selectedPlaces.map(places =>
+                                <TextTicket>ряд {places.numberRow}, место {places.numberPlace}, цена {prices}
+                                    грн </TextTicket>
+                            )}
 
-                      </CircleView>
-                            <InAllView>
-                                <InAllText>Всього:</InAllText>
-                                <InAllPriceText>{calc} грн</InAllPriceText>
-                            </InAllView>
-                      <KeyboardAvoidingView behavior="padding">
-                         <InputLineSet>
-                            <InputLineView>
-                                <TextInput
-                                    style={styles.input}
-                                    editable={true}
-                                    onChangeText={checkInputName}
-                                    placeholder='Ваше імʼя'
-                                    //ref='username'
-                                    returnKeyType='next'
-                                    onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
-                                    underlineColorAndroid={"transparent"}
-                                />
-                             </InputLineView>
-                                <InputLineView>
-                                <TextInput
-                                    style={styles.input}
-                                    editable={true}
-                                    onChangeText={checkInputTel}
-                                    placeholder='Ваш номер телефону'
-                                    returnKeyType='next'
-                                    keyboardType="numeric"
-                                    ref={(input) => this.telephonInput = input}
-                                    onSubmitEditing={() => this.MailInput.focus()}
-                                    underlineColorAndroid={"transparent"}
-                                />
-                                </InputLineView>
-                             <InputLineView>
-                                 <TextInput
-                                     style={styles.input}
-                                     editable={true}
-                                     onChangeText={checkInputMail}
-                                     placeholder='Email для отримання коду замовлення'
-                                     returnKeyType='go'
-                                     keyboardType="email-address"
-                                     ref={(input) => this.MailInput = input}
-                                     underlineColorAndroid={"transparent"}
-                                 />
-                             </InputLineView>
-                            </InputLineSet>
-                      </KeyboardAvoidingView>
-                        <MailView>
-                             <TextMail>
-                                На вказаний email Ви отримаєте повідомлення з деталями замовлення,
-                                кодом бронювання та квитками.
-                            </TextMail>
-                        </MailView>
-                            <OnPressView onPress={() => checkInput({calc})}>
-                                <BuyView>
-                                    <Buy>Купити</Buy>
-                                </BuyView>
-                            </OnPressView>
-                </Wrapper>
-        </ScrollView>
-            </ImageStyle>
+                        </InfoColumnRight>
+
+                    </InfoStringBottom>
+                </ContainerTicket>
+                <CircleView>
+                    <LargeCircleLeft/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <SmallCircle/>
+                    <LargeCircleRight/>
+
+                </CircleView>
+                <InAllView>
+                    <InAllText>Всього:</InAllText>
+                    <InAllPriceText>{calc} грн</InAllPriceText>
+                </InAllView>
+                <KeyboardAvoidingView behavior="padding">
+                    <InputLineSet>
+                        <InputLineView>
+                            <TextInput
+                                style={styles.input}
+                                editable={true}
+                                onChangeText={checkInputName}
+                                placeholder='Ваше імʼя'
+                                //ref='username'
+                                returnKeyType='next'
+                                onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
+                                underlineColorAndroid={"transparent"}
+                            />
+                        </InputLineView>
+                        <InputLineView>
+                            <TextInput
+                                style={styles.input}
+                                editable={true}
+                                onChangeText={checkInputTel}
+                                placeholder='Ваш номер телефону'
+                                returnKeyType='next'
+                                keyboardType="numeric"
+                                ref={(input) => this.telephonInput = input}
+                                onSubmitEditing={() => this.MailInput.focus()}
+                                underlineColorAndroid={"transparent"}
+                            />
+                        </InputLineView>
+                        <InputLineView>
+                            <TextInput
+                                style={styles.input}
+                                editable={true}
+                                onChangeText={checkInputMail}
+                                placeholder='Email для отримання коду замовлення'
+                                returnKeyType='go'
+                                keyboardType="email-address"
+                                ref={(input) => this.MailInput = input}
+                                underlineColorAndroid={"transparent"}
+                            />
+                        </InputLineView>
+                    </InputLineSet>
+                </KeyboardAvoidingView>
+                <MailView>
+                    <TextMail>
+                        На вказаний email Ви отримаєте повідомлення з деталями замовлення,
+                        кодом бронювання та квитками.
+                    </TextMail>
+                </MailView>
+                <OnPressView onPress={() => checkInput({calc})}>
+                    <BuyView>
+                        <Buy>Купити</Buy>
+                    </BuyView>
+                </OnPressView>
+            </ScrollView>
+        </Wrapper>
+
+
 
     )
 };

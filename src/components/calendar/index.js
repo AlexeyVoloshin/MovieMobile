@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import CalendarView from './view';
 
 export default class CalendarTest extends Component {
@@ -6,27 +6,29 @@ export default class CalendarTest extends Component {
         super(props);
         this.state = {isShowCalendar: false};
     }
+
     handleShowCalendar = () => {
         this.setState(
-            {isShowCalendar: !this.state.isShowCalendar }
+            {isShowCalendar: !this.state.isShowCalendar}
         );
     };
-    handleSelectDate = (dateString) =>{
+    handleSelectDate = (dateString) => {
         this.props.onSetSelectedDate(dateString);
         this.setState(
-            {isShowCalendar: false }
+            {isShowCalendar: false}
         );
     };
-    render(){
+
+    render() {
         console.log('calendar index selectedDate', this.props.selectedDate);
 
         return (
-          <CalendarView
-              onShowCalendar={this.handleShowCalendar}
-              isShow={this.state.isShowCalendar}
-              selectedDate={this.props.selectedDate}
-              onSetSelectedDate={this.handleSelectDate}
-          />
-       );
+            <CalendarView
+                onShowCalendar={this.handleShowCalendar}
+                isShow={this.state.isShowCalendar}
+                selectedDate={this.props.selectedDate}
+                onSetSelectedDate={this.handleSelectDate}
+            />
+        );
     }
 }

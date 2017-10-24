@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import { Text, View, Alert } from 'react-native';
+import {Text, View, Alert} from 'react-native';
 import MovieDetailsView from './view';
 import styled from 'styled-components/native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 export default class MovieDetails extends Component {
     constructor(props) {
@@ -26,6 +26,7 @@ export default class MovieDetails extends Component {
             }
         }
     }
+
     initialNumeric() {
         for (let i = 0; i < 1; i++) {
             for (let j = 0; j < 11; j++) {
@@ -33,6 +34,7 @@ export default class MovieDetails extends Component {
             }
         }
     }
+
     initialTopPlace() {
         for (let i = 0; i < 1; i++) {
             for (let j = 0; j < 10; j++) {
@@ -83,32 +85,34 @@ export default class MovieDetails extends Component {
         }
 
     };
-    checkChoiceDate =(places,date,time,price)=>{
+    checkChoiceDate = (places, date, time, price) => {
 
         const ChoiceDate = this.state.selectedPlace;
         console.log('!!!ChoiceDate', ChoiceDate);
-        if (ChoiceDate.length <= 0) return false;
-        this.MovieDetails(places,date,time,price);
+        if (ChoiceDate.length <= 0)
+            return alert('Please select place and row');
+        this.MovieDetails(places, date, time, price);
     };
-    MovieDetails(places,date,time,price)
-    {
-        Actions.tickets(places,date,time,price);
+
+    MovieDetails(places, date, time, price) {
+        Actions.tickets(places, date, time, price);
     }
-    render(){
+
+    render() {
         console.log('movie details selectedDate', this.props.date);
         console.log('!!!selectedPlaces', this.state.selectedPlace);
-        return(
-           <MovieDetailsView
-               checkChoiceDate={this.checkChoiceDate}
-               TopPlace={this.TopPlace}
-               placesNumeric={this.placesNumeric}
-               places={this.places}
-               selectedDate={this.props.date}
-               selectedTime={this.props.time}
-               onSelectPlace={this.handleSelectPlace}
-               selectedPlaces={this.state.selectedPlace}
-
-           />
+        return (
+            <MovieDetailsView
+                checkChoiceDate={this.checkChoiceDate}
+                TopPlace={this.TopPlace}
+                placesNumeric={this.placesNumeric}
+                places={this.places}
+                selectedDate={this.props.date}
+                selectedTime={this.props.time}
+                onSelectPlace={this.handleSelectPlace}
+                selectedPlaces={this.state.selectedPlace}
+                selectMoviePhoto={this.state.photoMovie}
+            />
         )
     }
 }

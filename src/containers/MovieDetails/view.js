@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView  } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Text, View, ListView} from 'react-native';
+import {Actions} from 'react-native-router-flux';
 import VipPlace from "../../components/vipPlace"
 
 const Wrapper = styled.View`
@@ -35,12 +35,22 @@ const MoviePoster = styled.View`
 const MovieInfoTextContainer = styled.View`
     flex: 1;
     padding-vertical: 20;
+    margin-left: 5;
+    margin-right: 2;
 `;
 const MovieSquare = styled.View`
     flex-direction: row;
     justify-content: space-between;
+    margin-horizontal: 15;
+    margin-top: 15;
+`;
+const SquaresPlaceView = styled.TouchableOpacity`
+    width: 13;
+    height: 13;
+    background-color: ${props => props.color ? props.color : '#000'};
+    border-radius: 2;
+    margin: 0 5px 5px 0;
     margin-top: 10;
-    margin-left: 10;
 `;
 const SquaresView = styled.TouchableOpacity`
     width: 15;
@@ -91,7 +101,7 @@ const Places = styled.View`
     
 `;
 const PlacesContainer = styled.View`
-    margin-horizontal: 23;
+    margin-horizontal: 26;
 `;
 const PlacesEndRow = styled.View`
     margin-top: 6;
@@ -101,7 +111,7 @@ const PlacesEndRow = styled.View`
 const PlacesRow = styled.View`
     margin-top: 1;
     flex-direction: row;
-    justifyContent: space-between;
+    justify-content: space-between;
 `;
 const TopPlaceView = styled.View`
     width: 15;
@@ -116,8 +126,8 @@ const TopPlaceContainer = styled.View`
 `;
 const VipPlaceContainer = styled.View`
     flex-direction: row;
-    justify-content: space-between;
     justify-content: center;
+    margin-left: 10;
 `;
 const TopPlaceText = styled.Text`
     color: #72bddcff;  
@@ -137,19 +147,22 @@ const NumericPlaceText = styled.Text`
 const NumericContainer = styled.View`
     justify-content: center;
 `;
+const VipPlaceView = styled.View`
+     margin-right: 11;
+`;
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
-const isActivePlace = (selectedPlaces, numberRow, numberPlace) =>{
-    const placeElement = selectedPlaces.find((item)=>{
+const isActivePlace = (selectedPlaces, numberRow, numberPlace) => {
+    const placeElement = selectedPlaces.find((item) => {
         return item.numberPlace === numberPlace && item.numberRow === numberRow;
     });
     return !!placeElement;
 };
-const renderRow = (places, onSelectPlace, selectedPlaces) =>{
+const renderRow = (places, onSelectPlace, selectedPlaces) => {
     const resultRow = [];
     places.forEach((item, i, arr) => {
         const iasActive = isActivePlace(selectedPlaces, item.numberRow, item.numberPlace);
@@ -169,36 +182,38 @@ const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
     let tempArray = [];
     let resultPlaces = [];
     places.forEach((item, i, arr) => {
-        if(i%14 === 0){
+        if (i % 14 === 0) {
             console.log('renderPlaces renderRow');
             resultPlaces.push(renderRow(tempArray, onSelectPlace, selectedPlaces));
-            tempArray=[];
+            tempArray = [];
         }
         tempArray.push(item);
     });
     return resultPlaces;
 };
 
-const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, selectedPlaces, placesNumeric,TopPlace,checkChoiceDate }):Props =>{
+const MovieDetailsView = ({selectMoviePhoto, places, selectedDate, selectedTime, onSelectPlace, selectedPlaces, placesNumeric, TopPlace, checkChoiceDate}): Props => {
     const _renderPlaces = renderPlaces(places, onSelectPlace, selectedPlaces);
-    console.log('MovieDetailsView selectedDate', selectedDate);
-    return(
+    console.log('selectMoviePhoto', selectMoviePhoto);
+    return (
+
+
         <Wrapper>
-            <ImageStyle source1={imgUri[0]} resizeMode="cover" />
-                <FilmTitle>ФОРСАЖ 8</FilmTitle>
+            <ImageStyle source1={imgUri[0]} resizeMode="cover"/>
+            <FilmTitle>ФОРСАЖ 8</FilmTitle>
             <MovieInfo>
                 <MoviePoster>
                     <MoviePhoto source={imgUri[1]}/>
                 </MoviePoster>
                 <MovieInfoTextContainer>
-                  <InfoRow>
-                    <InfoLeft>
-                        <TextInfo>Тривалість</TextInfo>
-                    </InfoLeft>
-                    <InfoRight>
-                        <TextInfo>2 год 16 хв</TextInfo>
-                    </InfoRight>
-                  </InfoRow>
+                    <InfoRow>
+                        <InfoLeft>
+                            <TextInfo>Тривалість</TextInfo>
+                        </InfoLeft>
+                        <InfoRight>
+                            <TextInfo>2 год 16 хв</TextInfo>
+                        </InfoRight>
+                    </InfoRow>
                     <InfoRow>
                         <InfoLeft>
                             <TextInfo>Оригінальна назва</TextInfo>
@@ -267,7 +282,7 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
                         <InfoLeftBottom>
                             <TextInfo>В головних ролях:</TextInfo>
                             <TextInfo>Дуэнд Джонсонб, Шарлиз Терон, Джейсон Стэйтем, Скотт Иствуд,
-                            Лукас Блэк, Хелен Миррен
+                                Лукас Блэк, Хелен Миррен
                             </TextInfo>
                         </InfoLeftBottom>
                     </InfoRow>
@@ -278,38 +293,46 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
                 <SquaresView color="#72bddcff"/>
                 <SquaresText>GOOD 65 грн</SquaresText>
 
-                <SquaresView color="#4d6babff" />
+                <SquaresView color="#4d6babff"/>
                 <SquaresText>Super LUX 65 грн</SquaresText>
 
-                <SquaresView color="gray" />
+                <SquaresView color="gray"/>
                 <SquaresText>Місце зайняте</SquaresText>
 
-                <SquaresView color="red" />
+                <SquaresView color="red"/>
                 <SquaresText>Ваш вибір</SquaresText>
 
             </MovieSquare>
-              <PlacesEndRow>
-                  <NumericContainer>
-                      {placesNumeric.map((place) =>{
-                      return (<NumericPlaces><NumericPlaceText>{place.numericPlace}</NumericPlaceText>
-                      <NumericPlaceText>{place.numericRow}</NumericPlaceText></NumericPlaces>)
-                  })}
-                  </NumericContainer>
+            <PlacesEndRow>
+                <NumericContainer>
+                    {placesNumeric.map((place) => {
+                        return (<NumericPlaces><NumericPlaceText>{place.numericPlace}</NumericPlaceText>
+                            <NumericPlaceText>{place.numericRow}</NumericPlaceText></NumericPlaces>)
+                    })}
+                </NumericContainer>
                 <Places>
                     <TopPlaceContainer>
-                    {TopPlace.map((place) =>{
-                        return (<TopPlaceView><TopPlaceText>{place.numericPlace}</TopPlaceText>
-                            <TopPlaceText>{place.numericRow}</TopPlaceText></TopPlaceView>)
-                    })}
+                        {TopPlace.map((place) => {
+                            return (<TopPlaceView><TopPlaceText>{place.numericPlace}</TopPlaceText>
+                                <TopPlaceText>{place.numericRow}</TopPlaceText></TopPlaceView>)
+                        })}
                     </TopPlaceContainer>
-                       <PlacesContainer>
-                          {_renderPlaces}
-                       </PlacesContainer>
+                    <PlacesContainer>
+                        {_renderPlaces}
+                    </PlacesContainer>
                     <VipPlaceContainer>
-                         <VipPlace/>
+                        <VipPlaceView><SquaresPlaceView color="#4d6babff"/></VipPlaceView>
+                        <VipPlaceView><SquaresPlaceView color="#4d6babff"/></VipPlaceView>
+                        <VipPlaceView><VipPlace/></VipPlaceView>
+                        <VipPlaceView><VipPlace/></VipPlaceView>
+                        <VipPlaceView><VipPlace/></VipPlaceView>
+                        <VipPlaceView><VipPlace/></VipPlaceView>
+                        <VipPlaceView><VipPlace/></VipPlaceView>
+                        <VipPlaceView><SquaresPlaceView color="#4d6babff"/></VipPlaceView>
+
                     </VipPlaceContainer>
                 </Places>
-              </PlacesEndRow>
+            </PlacesEndRow>
             <OnPressView
                 onPress={
                     () => checkChoiceDate({
@@ -318,11 +341,11 @@ const MovieDetailsView = ({places, selectedDate, selectedTime, onSelectPlace, se
                         places: selectedPlaces,
                         price: 65,
                     })
-                 }
+                }
             >
-            <NextView>
-            <Next>Далі</Next>
-            </NextView>
+                <NextView>
+                    <Next>Далі</Next>
+                </NextView>
             </OnPressView>
         </Wrapper>
     )

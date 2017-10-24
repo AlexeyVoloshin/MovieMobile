@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView, Image, StyleSheet  } from 'react-native';
+import {Text, View, ListView, Image, StyleSheet} from 'react-native';
 import CalendarTest from '../../components/calendar';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import Swiper from 'react-native-swiper';
 import calendar from '../../components/calendar';
+
 const Wrapper = styled.ListView`
 
 `;
@@ -49,7 +50,7 @@ const TextStyledTime = styled.Text`
 const MovieDateContain = styled.View`
    flex-direction: row;
    justify-content: space-between;
-   
+   margin-horizontal: 30;
 `;
 const MovieDate = styled.Text`
    fontSize: 15;
@@ -58,125 +59,104 @@ const MovieDate = styled.Text`
    margin-top: 20;
    color: red;
 `;
+
 const imgUri = [
     require('../../img/layer_5.png'),
     require('../../img/layer_4.png'),
     require('../../img/calendar.png'),
     require('../../img/arrow-down.png'),
 ];
-const styles = StyleSheet.create({
-    wrapper: {
-    },
-    slide1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9DD6EB',
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5',
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 30,
-        fontWeight: 'bold',
-    }
-});
 
-const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate, checkChoiceDateSession }):Props => {
+
+const PremieresView = ({allMovie, selectedDate, onSetSelectedDate, checkChoiceDateSession}): Props => {
     console.log('PremieresView selectedDate', selectedDate);
-       console.log("allMovie", allMovie);
-        return(
-            <View>
+    console.log("allMovie", allMovie);
+    return (
+        <View>
             <ImageStyle source={imgUri[0]}>
                 <StyledText>ФОРСАЖ 8</StyledText>
                 <Row>
 
-                          <Wrapper horizontal={true}
-                                   scrollEnabled={true}
-                                   dataSource={allMovie}
-                                   renderRow={(rowData) => <MoviePhoto source={{uri: rowData }}/>}
-                            />
+                    <Wrapper horizontal={true}
+                             scrollEnabled={true}
+                             dataSource={allMovie}
+                             renderRow={(rowData) => {
+                                 console.log("rowData", rowData);
+                                 return <MoviePhoto onPress source={{uri: rowData}}/>
+                             }}
+
+                    />
 
 
-                        <TextStyled>Розклад сеансів</TextStyled>
-                         <DateStyled>
-                          <CalendarTest
-                              onSetSelectedDate={onSetSelectedDate}
-                              selectedDate={selectedDate}
-                          />
-                         </DateStyled>
-                        <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
+                    <TextStyled>Розклад сеансів</TextStyled>
+                    <DateStyled>
+                        <CalendarTest
+                            onSetSelectedDate={onSetSelectedDate}
+                            selectedDate={selectedDate}
+                        />
+                    </DateStyled>
+                    <TextStyledTime>Натисніть на час сеансу щоб вибрати місця</TextStyledTime>
 
                     <MovieDateContain>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
-
+                        <MovieDate onPress={() => checkChoiceDateSession({
+                            photoMovie: allMovie,
                             date: selectedDate,
                             time: "18:10",
-                            })
+                        })
                         }
                         >
                             18:10
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "19:00",
-                            })
+                        })
                         }
                         >
                             19:00
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "19:50",
-                            })
+                        })
                         }
                         >
                             19:50
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "20:50",
-                            })
+                        })
                         }
                         >
                             20:50
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "21:40",
-                            })
+                        })
                         }
                         >
                             21:40
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "22:30",
-                            })
+                        })
                         }
                         >
                             22:30
                         </MovieDate>
-                        <MovieDate onPress={ () => checkChoiceDateSession({
+                        <MovieDate onPress={() => checkChoiceDateSession({
 
                             date: selectedDate,
                             time: "23:30",
-                            })
+                        })
                         }
                         >
                             23:30
@@ -185,10 +165,8 @@ const PremieresView = ({ allMovie, selectedDate, onSetSelectedDate, checkChoiceD
 
                 </Row>
             </ImageStyle>
-            </View>
-        );
+        </View>
+    );
 };
 export default PremieresView;
-{/*<PhotoMoviView>
-                    <MoviePhoto source={imgUri[1]}/>
-                    </PhotoMoviView>*/}
+

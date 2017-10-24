@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Text, View, Modal, Picker,StyleSheet } from 'react-native';
+import {Text, View, Modal, Picker, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import WelcomeText from "react-native/local-cli/templates/HelloNavigation/views/welcome/WelcomeText.android";
+
 const PlacesText = styled.Text`
     color: #4d6babff;
     
@@ -13,7 +14,7 @@ const SquaresView = styled.TouchableOpacity`
     background-color: ${props => props.color ? props.color : '#000'};
     border-radius: 2;
     margin: 0 5px 5px 0;
-    padding-horizontal: 9;
+    
 `;
 const MovieSquare = styled.View`
     flex-direction: row;
@@ -22,18 +23,18 @@ const MovieSquare = styled.View`
 `;
 
 
-const VipPlaceView = ({ placesVip, }):Props =>{
+const VipPlaceView = ({placesVip,}): Props => {
 
-            return(
-                <MovieSquare>
+    return (
+        <MovieSquare>
 
-                        {placesVip.map((place) =>{
-                            return(<SquaresView color="#4d6babff"><PlacesText>{place.numberPlaceVip}</PlacesText>
-                                <PlacesText>{place.numberRowVip}</PlacesText></SquaresView>)
-                        })}
+            {placesVip.map((place) => {
+                return (<SquaresView color="#4d6babff"><PlacesText>{place.numberPlaceVip}</PlacesText>
+                    <PlacesText>{place.numberRowVip}</PlacesText></SquaresView>)
+            })}
 
-                    </MovieSquare>
-            );
-    }
+        </MovieSquare>
+    );
+}
 
 export default VipPlaceView;

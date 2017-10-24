@@ -1,23 +1,25 @@
 import React, {Component} from 'react';
-import { Text, View, ListView  } from 'react-native';
+import {Text, View, ListView} from 'react-native';
 import PremieresView from './view';
 import styled from 'styled-components/native';
-import { getAllMovie } from '../../components/api';
+import {getAllMovie} from '../../components/api';
 import {TabBar, Schema} from 'react-native-router-flux';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 export default class Premieres extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             isLoading: true,
             movie: null,
-            selectedDate: null,
+            selectedDate: '',
         }
     }
+
     handleSetSelectedDate = (selectedDate) => {
-        this.setState( { selectedDate } );
+        this.setState({selectedDate});
     }
+
     componentDidMount() {
 
         getAllMovie().then((value) => {
@@ -27,31 +29,34 @@ export default class Premieres extends Component {
 
         });
     }
-    checkChoiceDateSession =(date,time)=>{
 
-        const ChoiceDateSession = this.handleSetSelectedDate;
+    checkChoiceDateSession = (photoMovie, date, time) => {
+
+        const ChoiceDateSession = this.state.selectedDate;
         console.log('!!!ChoiceDateSession', ChoiceDateSession);
-        if (ChoiceDateSession.length <= 0) return false;
-        this.Premieres(date,time);
+        if (ChoiceDateSession.length <= 0)
+            return alert("Please, select date");
+        this.Premieres(photoMovie, date, time);
     };
-    Premieres(date,time)
-    {
-        Actions.movieDetails(date,time);
+
+    Premieres(photoMovie, date, time) {
+        Actions.movieDetails(photoMovie, date, time);
     }
-    render(){
-        if (this.state.isLoading){
+
+    render() {
+        if (this.state.isLoading) {
             return (
                 <Text>
                     Loading...
                 </Text>
             );
         }
-        console.log("this.state.movie",this.state.movie);
-        return(
+        console.log("this.state.movie", this.state.movie);
+        return (
 
             <PremieresView
-                checkChoiceDateSession = {this.checkChoiceDateSession}
-                allMovie = {this.state.movie}
+                checkChoiceDateSession={this.checkChoiceDateSession}
+                allMovie={this.state.movie}
                 selectedDate={this.state.selectedDate}
                 onSetSelectedDate={this.handleSetSelectedDate}
             />

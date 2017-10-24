@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Text, View, ListView  } from 'react-native';
+import {Text, View, ListView} from 'react-native';
 import MenuNumbersView from './view';
 
 
@@ -15,12 +15,12 @@ export default class MenuNumbers extends Component {
         this.setState({user: itemValue})
     }
 
-    render(){
+    render() {
         return (
             <MenuNumbersView
                 onChange={this.updateUser}
-                 selected={this.state.user}
-              />
+                selected={this.state.user}
+            />
         );
     }
 }

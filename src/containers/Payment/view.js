@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Text, View, ListView, TextInput, StyleSheet, Span, ScrollView  } from 'react-native';
-import { Action } from 'react-native-router-flux';
+import {Text, View, ListView, TextInput, StyleSheet, Span, ScrollView} from 'react-native';
+import {Action} from 'react-native-router-flux';
 import MenuNumbers from '../../components/menuNumbers';
 
+const Wrapper = styled.View`
+    flex: 1;
+    background-color: #0d1a27ff;
+`;
 const Row = styled.View`
      background-color: #ffffffff;
      margin-top: 40;
@@ -44,21 +48,20 @@ const Next = styled.Text`
 `;
 const NextView = styled.View`
      margin-bottom: 30;
-     margin-top: 20;
      border-radius:30;
      background-color: #f15459ff;
      width: 250;
      height: 32;
-     flex-direction: row;
      justify-content: center;
+     margin-horizontal: 30;
 `;
 const CardImage = styled.Image` 
      width: 100%;
-     height: 35;
+     height: 30;
 `;
 const CardImageView = styled.View`
-      margin-horizontal: 40;
-      margin-top: 30;
+      margin-top: 20;
+      margin-bottom: 10;
 `;
 const ImageStyle = styled.Image`
       width: 100%;
@@ -119,7 +122,7 @@ const imgUri = [
     require('../../img/card.png'),
     require('../../img/shape-2-copy.png'),
 ];
-const styles= StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         paddingTop: 23
     },
@@ -135,7 +138,7 @@ const styles= StyleSheet.create({
         fontFamily: 'lightItalic',
         borderRadius: 20,
     },
-    inputCvv:{
+    inputCvv: {
         height: 25,
         borderColor: '#9ba2adff',
         marginHorizontal: 10,
@@ -163,78 +166,76 @@ const styles= StyleSheet.create({
 console.log(' menuNumbers', MenuNumbers);
 const Space = ("       ");
 
-const PaymentView = ({selectedDate,selectedTime, pay}):Props =>{
+const PaymentView = ({selectedDate, selectedTime, pay}): Props => {
 
-    return(
-
-        <ImageStyle source={imgUri[0]}>
+    return (
+        <Wrapper>
+            <ImageStyle source1={imgUri[0]}/>
             <Row>
-                <View>
-                </View>
                 <HeadLine>Платіжна інформація</HeadLine>
-                  <HeadLineView>
-                      <InfoViewIcon>
-                          <Shape source={imgUri[1]} resizeMode="contain"/>
-                              <InfoViewText>
-                              <ShapeText>ID платежа</ShapeText>
-                              <ShapeText>2edb39f8f0064259be272554cbfda11f</ShapeText>
-                              </InfoViewText>
-                      </InfoViewIcon>
-                      <InfoViewIcon>
-                          <Forma source={imgUri[2]} resizeMode="contain"/>
-                          <InfoViewText>
-                              <ShapeText>Всього до оплаты</ShapeText>
-                              <ShapeText>{pay} грн</ShapeText>
-                          </InfoViewText>
-                       </InfoViewIcon>
-                      <InfoViewIcon>
-                          <ShapeInfo source={imgUri[3]} resizeMode="contain"/>
-                          <InfoViewText>
-                          <ShapeText>Інформація платіжної карти</ShapeText>
-                          </InfoViewText>
-                      </InfoViewIcon>
-                  </HeadLineView>
-                        <CardLineView>
-                            <TextInput
-                                style={styles.input}
-                                editable={true}
-                                //onChangeText={checkInputName}
-                                placeholder='         XXXX XXXX XXXX XXXX'
-                                returnKeyType='next'
-                                //onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
-                                underlineColorAndroid={"transparent"}
-                                keyboardType="numeric"
-                            />
-                        </CardLineView>
-                            <PeriodInputView>
-                                <PeriodView>
-                                    <Period>Строк дії до:</Period>
+                <HeadLineView>
+                    <InfoViewIcon>
+                        <Shape source={imgUri[1]} resizeMode="contain"/>
+                        <InfoViewText>
+                            <ShapeText>ID платежа</ShapeText>
+                            <ShapeText>2edb39f8f0064259be272554cbfda11f</ShapeText>
+                        </InfoViewText>
+                    </InfoViewIcon>
+                    <InfoViewIcon>
+                        <Forma source={imgUri[2]} resizeMode="contain"/>
+                        <InfoViewText>
+                            <ShapeText>Всього до оплаты</ShapeText>
+                            <ShapeText>{pay} грн</ShapeText>
+                        </InfoViewText>
+                    </InfoViewIcon>
+                    <InfoViewIcon>
+                        <ShapeInfo source={imgUri[3]} resizeMode="contain"/>
+                        <InfoViewText>
+                            <ShapeText>Інформація платіжної карти</ShapeText>
+                        </InfoViewText>
+                    </InfoViewIcon>
+                </HeadLineView>
+                <CardLineView>
+                    <TextInput
+                        style={styles.input}
+                        editable={true}
+                        //onChangeText={checkInputName}
+                        placeholder='         XXXX XXXX XXXX XXXX'
+                        returnKeyType='next'
+                        //onSubmitEditing={() => this.telephonInput.focus()} /* переходит по фокусу на следю поле ref=*/
+                        underlineColorAndroid={"transparent"}
+                        keyboardType="numeric"
+                    />
+                </CardLineView>
+                <PeriodInputView>
+                    <PeriodView>
+                        <Period>Строк дії до:</Period>
 
-                                        <PeriodInput>
-                                                 <ContainerPeriod><MenuNumbers/></ContainerPeriod>
-                                                 <ContainerPeriod><MenuNumbers/></ContainerPeriod>
-                                        </PeriodInput>
-                                </PeriodView>
+                        <PeriodInput>
+                            <ContainerPeriod><MenuNumbers/></ContainerPeriod>
+                            <ContainerPeriod><MenuNumbers/></ContainerPeriod>
+                        </PeriodInput>
+                    </PeriodView>
 
-                                <CvvView>
-                                    <CVV>CVV2/CVC2</CVV>
-                                    <TextInput
-                                        style={styles.inputCvv}
-                                        editable={true}
-                                        underlineColorAndroid={"transparent"}
-                                        placeholder='    XXX'
-                                        keyboardType="numeric"
-                                    />
-                                </CvvView>
-                            </PeriodInputView>
-                                 <CardImageView>
-                                    <CardImage source={imgUri[4]} resizeMode="contain"/>
-                                 </CardImageView>
-                                 <NextView>
-                                    <Next>Оплатити</Next>
-                                 </NextView>
-                </Row>
-            </ImageStyle>
+                    <CvvView>
+                        <CVV>CVV2/CVC2</CVV>
+                        <TextInput
+                            style={styles.inputCvv}
+                            editable={true}
+                            underlineColorAndroid={"transparent"}
+                            placeholder='    XXX'
+                            keyboardType="numeric"
+                        />
+                    </CvvView>
+                </PeriodInputView>
+                <CardImageView>
+                    <CardImage source={imgUri[4]} resizeMode="cover"/>
+                </CardImageView>
+                <NextView>
+                    <Next>Оплатити</Next>
+                </NextView>
+            </Row>
+        </Wrapper>
     );
 };
 export default PaymentView;

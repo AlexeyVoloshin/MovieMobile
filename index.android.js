@@ -4,10 +4,9 @@
  * @flow
  */
 
-import {  AppRegistry,} from 'react-native';
+import {AppRegistry,} from 'react-native';
 
 import MovieMobile from './src';
-
 
 
 AppRegistry.registerComponent('MovieMobile', () => MovieMobile);

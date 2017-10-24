@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Text, View, Modal } from 'react-native';
+import {Text, View, Modal} from 'react-native';
 import styled from 'styled-components/native';
-import { Calendar } from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
+
 const Wrapper = styled.View`
     
 `;
@@ -48,13 +49,15 @@ const arrowCalendar = {
 };
 
 class CalendarView extends Component {
-    renderCalendar(){
-        const { isShow, onSetSelectedDate } = this.props;
-        return(
+    renderCalendar() {
+        const {isShow, onSetSelectedDate} = this.props;
+        return (
             <Modal
                 visible={isShow}
                 transparent={true}
-                onRequestClose= {() => {console.log("Modal closed.")}}
+                onRequestClose={() => {
+                    console.log("Modal closed.")
+                }}
                 animationType="slide"
             >
                 <CustomCalendar
@@ -85,26 +88,27 @@ class CalendarView extends Component {
         );
     }
 
-    renderButton(){
-        const { isShow, onShowCalendar, selectedDate } = this.props;
+    renderButton() {
+        const {isShow, onShowCalendar, selectedDate} = this.props;
         console.log('calendar view selectedDate', selectedDate);
         let icon = null;
-        if(isShow)
+        if (isShow)
             icon = arrowCalendar.active;
         else
             icon = arrowCalendar.noActive;
-        return(
+        return (
             <CalendarIconTouch
                 onPress={onShowCalendar}
             >
                 <DateStyled>
                     <ImageStyleCalendar source={ImgUri[0]}/>
-                    <TextStyledDate>{selectedDate ? selectedDate.dateString : 'Select date' }</TextStyledDate>
-                    <ImageStyleArrow source ={icon}/>
+                    <TextStyledDate>{selectedDate ? selectedDate.dateString : 'Select date'}</TextStyledDate>
+                    <ImageStyleArrow source={icon}/>
                 </DateStyled>
             </CalendarIconTouch>
         );
     }
+
     render() {
         const renderButton = this.renderButton();
         const renderCalendar = this.renderCalendar();
