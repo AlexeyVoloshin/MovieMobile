@@ -1,66 +1,86 @@
-import React, {Component} from 'react';
-import {Text, View, ListView} from 'react-native';
-import PremieresView from './view';
-import styled from 'styled-components/native';
-import {getAllMovie} from '../../components/api';
-import {TabBar, Schema} from 'react-native-router-flux';
-import {Actions} from 'react-native-router-flux';
+import React, { Component } from "react";
+import { Text, View, ListView } from "react-native";
+import PremieresView from "./view";
+import styled from "styled-components/native";
+import { TabBar, Schema } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux";
 
 export default class Premieres extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoading: true,
-            movie: null,
-            selectedDate: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      movie: null,
+      selectedDate: "",
+      item: "",
+      arrFilms: [
+        {
+          id: 0,
+          image: require("../../img/layer8.png"),
+          title: "ФОТСАЖ 8",
+          lang: "Українська мова",
+          released: "13.04.2017",
+          time: "2 год 16 хв",
+          actors:
+            "Дуэнд Джонсонб, Шарлиз Терон, Джейсон Стэйтем, Скотт Иствуд,\n" +
+            "Лукас Блэк, Хелен Миррен"
+        },
+        {
+          id: 1,
+          image: require("../../img/Transformers.png"),
+          title: "Трансформеры",
+          lang: "Українська мова",
+          released: "2017",
+          time: "2 год 29 хв",
+          actors: "Марк Уолберг, Изабела Монер, Джош Дюамель, Энтони Хопкинс"
+        },
+        {
+          id: 2,
+          image: require("../../img/Terminator_Genisys.png"),
+          title: "Терминатор: Генезис",
+          lang: "Українська мова",
+          released: "2 июля 2015 года",
+          time: "2 год 6 хв",
+          actors:
+            "Арнольд Шварценеггер, Эмилия Кларк, Джейсон Кларк, Джай Кортни"
         }
-    }
-
-    handleSetSelectedDate = (selectedDate) => {
-        this.setState({selectedDate});
-    }
-
-    componentDidMount() {
-
-        getAllMovie().then((value) => {
-            console.log("metka", value);
-            let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-            this.setState({isLoading: false, movie: ds.cloneWithRows(value.message),});
-
-        });
-    }
-
-    checkChoiceDateSession = (photoMovie, date, time) => {
-
-        const ChoiceDateSession = this.state.selectedDate;
-        console.log('!!!ChoiceDateSession', ChoiceDateSession);
-        if (ChoiceDateSession.length <= 0)
-            return alert("Please, select date");
-        this.Premieres(photoMovie, date, time);
+      ]
     };
+  }
 
-    Premieres(photoMovie, date, time) {
-        Actions.movieDetails(photoMovie, date, time);
-    }
+  handleSetSelectedMovie = item => {
+    console.log("!!!item", item);
+    this.setState({ item });
+  };
+  handleSetSelectedDate = selectedDate => {
+    this.setState({ selectedDate });
+  };
+  checkChoiceDateSession = (photoMovie, date, time, item) => {
+    const ChoiceDateSession = this.state.selectedDate;
+    const ChoiceItem = this.state.item;
+    console.log("!!!ChoiceDateSession", ChoiceDateSession);
+    if (ChoiceDateSession.length <= 0 || ChoiceItem.length <= 0)
+      return alert("Please, select date and movie!");
+    this.Premieres(photoMovie, date, time, item);
+  };
 
-    render() {
-        if (this.state.isLoading) {
-            return (
-                <Text>
-                    Loading...
-                </Text>
-            );
-        }
-        console.log("this.state.movie", this.state.movie);
-        return (
+  Premieres(photoMovie, date, time, item) {
+    console.log("!!!item", item);
+    Actions.movieDetails(photoMovie, date, time, item);
+  }
 
-            <PremieresView
-                checkChoiceDateSession={this.checkChoiceDateSession}
-                allMovie={this.state.movie}
-                selectedDate={this.state.selectedDate}
-                onSetSelectedDate={this.handleSetSelectedDate}
-            />
-
-        )
-    }
+  render() {
+    console.log("item", this.state.item);
+    return (
+      <PremieresView
+        checkChoiceDateSession={this.checkChoiceDateSession}
+        allMovie={this.state.movie}
+        selectedDate={this.state.selectedDate}
+        onSetSelectedDate={this.handleSetSelectedDate}
+        arrFilms={this.state.arrFilms}
+        handleSetSelectedMovie={this.handleSetSelectedMovie}
+        item={this.state.item}
+      />
+    );
+  }
 }
