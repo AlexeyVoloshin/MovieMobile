@@ -163,7 +163,6 @@ const styles = StyleSheet.create({
     color: 'red'
   }
 });
-console.log(' menuNumbers', MenuNumbers);
 
 const PaymentView = ({ selectedDate, selectedTime, pay }): Props => {
   return (

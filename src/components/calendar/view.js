@@ -81,7 +81,6 @@ class CalendarView extends Component {
   }
   renderButton() {
     const { isShow, onShowCalendar, selectedDate } = this.props;
-    console.log("calendar view selectedDate", selectedDate);
     let icon = null;
     if (isShow) icon = arrowCalendar.active;
     else icon = arrowCalendar.noActive;

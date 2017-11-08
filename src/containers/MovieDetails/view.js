@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, View, ListView } from "react-native";
+import { Text, View, ListView, ScrollView } from "react-native";
 import { Actions } from "react-native-router-flux";
 import VipPlace from "../../components/vipPlace";
 
@@ -176,16 +176,13 @@ const renderRow = (places, onSelectPlace, selectedPlaces) => {
       />
     );
   });
-  console.log(<PlacesRow>{resultRow}</PlacesRow>);
   return <PlacesRow>{resultRow}</PlacesRow>;
 };
 const renderPlaces = (places, onSelectPlace, selectedPlaces) => {
-  console.log("renderPlaces", places.places);
   let tempArray = [];
   let resultPlaces = [];
   places.forEach((item, i, arr) => {
     if (i % 14 === 0) {
-      console.log("renderPlaces renderRow");
       resultPlaces.push(renderRow(tempArray, onSelectPlace, selectedPlaces));
       tempArray = [];
     }
@@ -206,9 +203,9 @@ const MovieDetailsView = ({
   checkChoiceDate
 }): Props => {
   const _renderPlaces = renderPlaces(places, onSelectPlace, selectedPlaces);
-  console.log("selectedDateMovie", selectedDateMovie);
   return (
-    <Wrapper>
+      <Wrapper>
+    <ScrollView>
       <ImageStyle source1={imgUri[0]} resizeMode="cover" />
 
       <FilmTitle>{selectedDateMovie.item.title}</FilmTitle>
@@ -376,6 +373,7 @@ const MovieDetailsView = ({
           <Next>Далі</Next>
         </NextView>
       </OnPressView>
+    </ScrollView>
     </Wrapper>
   );
 };

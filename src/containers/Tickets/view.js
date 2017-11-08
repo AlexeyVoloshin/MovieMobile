@@ -177,10 +177,6 @@ const TicketsView = ({
   };
 
   const calc = calcPlaces(selectedPlaces.length, prices);
-
-  console.log("TicketsView selectedDateMovie", selectedDateMovie);
-  console.log("TicketsView selectedPlaces", selectedPlaces);
-  console.log("TicketsView prices", prices);
   return (
     <Wrapper>
       <ScrollView>

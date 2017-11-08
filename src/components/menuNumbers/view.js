@@ -9,8 +9,6 @@ const styles = StyleSheet.create({
 });
 
 const MenuNumbersView = ({ onChange, selected }): Props => {
-  console.log("selected", selected);
-
   return (
     <View>
       <Picker

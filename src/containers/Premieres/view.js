@@ -6,7 +6,8 @@ import {
   ListView,
   Image,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import CalendarTest from "../../components/calendar";
 import { Actions } from "react-native-router-flux";
@@ -66,10 +67,9 @@ const PremieresView = ({
   onSetSelectedDate,
   checkChoiceDateSession
 }): Props => {
-  console.log("PremieresView selectedDate", selectedDate);
-  console.log("arrFilms", arrFilms);
   return (
     <Wrapper>
+     <ScrollView>
       <View>
         <PhotoListView horizontal={true} scrollEnabled={true}>
           {arrFilms.map((item, index) => (
@@ -166,6 +166,7 @@ const PremieresView = ({
           23:30
         </MovieDate>
       </MovieDateContain>
+      </ScrollView>
     </Wrapper>
   );
 };

@@ -32,10 +32,6 @@ export default class Tickets extends Component {
   }
 
   render() {
-    console.log("tickets  selectedDate", this.props.date);
-    console.log("tickets  selectedPlace", this.props.places);
-    console.log("tickets  selectedPlace", this.props.price);
-    console.log("tickets  username!!!!!", this.state.username);
     return (
       <TicketsView
         places={this.places}

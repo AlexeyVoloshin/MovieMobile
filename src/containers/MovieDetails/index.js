@@ -16,7 +16,6 @@ export default class MovieDetails extends Component {
     this.initialNumeric();
     this.TopPlace = [];
     this.initialTopPlace();
-    console.log("placesNumeric", this.placesNumeric);
   }
 
   initialPlaces() {
@@ -49,16 +48,12 @@ export default class MovieDetails extends Component {
       const newStateArray = selectedPlace ? selectedPlace.slice() : [];
       newStateArray.push({ numberRow: row, numberPlace: place });
       this.setState({ selectedPlace: newStateArray });
-      console.log("!!!row", row);
-      console.log("!!!place", place);
     } else if (selectedPlace.length > 0) {
       const placeElement = selectedPlace.find(item => {
         return item.numberPlace === place && item.numberRow === row;
       });
 
       if (placeElement) {
-        console.log("delete", place);
-        console.log("delete", row);
 
         const filteredPlaces = [];
         selectedPlace.forEach(item => {
@@ -69,19 +64,15 @@ export default class MovieDetails extends Component {
           }
         });
         this.setState({ selectedPlace: filteredPlaces });
-        console.log("!!!filteredPlaces", filteredPlaces);
       } else {
         const newStateArray = selectedPlace ? selectedPlace.slice() : [];
         newStateArray.push({ numberRow: row, numberPlace: place });
         this.setState({ selectedPlace: newStateArray });
-        console.log("!!!row", row);
-        console.log("!!!place", place);
       }
     }
   };
   checkChoiceDate = (places, date, time, price, item) => {
     const ChoiceDate = this.state.selectedPlace;
-    console.log("!!!ChoiceDate", ChoiceDate);
     if (ChoiceDate.length <= 0) return alert("Please select place and row");
     this.MovieDetails(places, date, time, price, item);
   };
@@ -91,8 +82,6 @@ export default class MovieDetails extends Component {
   }
 
   render() {
-    console.log("this.props.item", this.props.item);
-    console.log("!!!selectedPlaces", this.state.selectedPlace);
     return (
       <MovieDetailsView
         checkChoiceDate={this.checkChoiceDate}

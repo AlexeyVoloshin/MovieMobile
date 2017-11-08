@@ -16,8 +16,6 @@ export default class CalendarTest extends Component {
   };
 
   render() {
-    console.log("calendar index selectedDate", this.props.selectedDate);
-
     return (
       <CalendarView
         onShowCalendar={this.handleShowCalendar}

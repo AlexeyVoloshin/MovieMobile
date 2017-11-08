@@ -49,7 +49,6 @@ export default class Premieres extends Component {
   }
 
   handleSetSelectedMovie = item => {
-    console.log("!!!item", item);
     this.setState({ item });
   };
   handleSetSelectedDate = selectedDate => {
@@ -58,19 +57,16 @@ export default class Premieres extends Component {
   checkChoiceDateSession = (photoMovie, date, time, item) => {
     const ChoiceDateSession = this.state.selectedDate;
     const ChoiceItem = this.state.item;
-    console.log("!!!ChoiceDateSession", ChoiceDateSession);
     if (ChoiceDateSession.length <= 0 || ChoiceItem.length <= 0)
       return alert("Please, select date and movie!");
     this.Premieres(photoMovie, date, time, item);
   };
 
   Premieres(photoMovie, date, time, item) {
-    console.log("!!!item", item);
     Actions.movieDetails(photoMovie, date, time, item);
   }
 
   render() {
-    console.log("item", this.state.item);
     return (
       <PremieresView
         checkChoiceDateSession={this.checkChoiceDateSession}

@@ -9,8 +9,6 @@ export default class MenuNumbers extends Component {
   }
 
   updateUser = (itemValue, itemIndex) => {
-    console.log("itemValue", itemValue);
-    console.log("itemIndex", itemIndex);
     this.setState({ user: itemValue });
   };
 

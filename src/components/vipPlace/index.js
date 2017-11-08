@@ -8,7 +8,6 @@ export default class VipPlace extends Component {
     this.state = {};
     this.placesVip = [];
     this.initialPlaces();
-    console.log("this.places", this.placesVip);
   }
 
   initialPlaces() {
